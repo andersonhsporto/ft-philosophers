@@ -4,7 +4,9 @@ CC		= gcc
 
 CFLAGS	= -Wall #-Wextra -Werror
 
-SRC		= ft_atoi.c inspect.c inspect_utils.c philosophers.c
+HEADER	= philosophers.h
+
+SRC		= 0-philosophers.c 1-inspect.c 2-inspect_utils.c 3-ft_atoi.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -13,7 +15,7 @@ OBJ		= $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(HEADER) $(OBJ)
 	rm -rf $(NAME)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
