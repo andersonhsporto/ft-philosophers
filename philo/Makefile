@@ -17,7 +17,7 @@ all: $(NAME)
 
 $(NAME): $(HEADER) $(OBJ)
 	rm -rf $(NAME)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -pthread $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
