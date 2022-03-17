@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/16 23:22:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/16 23:44:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 enum	e_arg
 {
-	number_of_philosophers = 1,
+	number_of_philosophers,
 	time_to_die,
 	time_to_eat,
 	time_to_sleep,
@@ -37,5 +37,7 @@ typedef struct s_philo
 }	t_philo;
 
 int	inspect_args(int argc, char **argv);
+int	ft_atoi(const char *str);
+int	inspect_char(int c);
 
 #endif

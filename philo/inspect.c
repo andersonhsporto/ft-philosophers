@@ -6,13 +6,14 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:03:27 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/16 23:41:40 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/16 23:47:07 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	print_arg_error(int index);
+static int	atoi_fchar(char *string);
+static void	print_arg_error(int index);
 
 int	inspect_args(int argc, char **argv)
 {
@@ -32,11 +33,11 @@ int	inspect_args(int argc, char **argv)
 		}
 		return (1);
 	}
-	printf("philo: argument error\n");
+	printf("philosophers: wrong number of arguments\n");
 	return (0);
 }
 
-int	atoi_fchar(char *string)
+static int	atoi_fchar(char *string)
 {
 	int	index;
 
@@ -50,16 +51,18 @@ int	atoi_fchar(char *string)
 	return (ft_atoi(string));
 }
 
-void	print_arg_error(int index)
+static void	print_arg_error(int index)
 {
+	index--;
 	if (index == number_of_philosophers)
-		printf("philo: error in 'number of philosophers' argument\n");
+		printf("philosophers: error in 'number of philosophers' argument\n");
 	else if (index == time_to_die)
-		printf("philo: error in 'time to die' argument\n");
+		printf("philosophers: error in 'time to die' argument\n");
 	else if (index == time_to_eat)
-		printf("philo: error in 'time to eat' argument\n");
+		printf("philosophers: error in 'time to eat' argument\n");
 	else if (index == time_to_sleep)
-		printf("philo: error in 'time to sleep' argument\n");
+		printf("philosophers: error in 'time to sleep' argument\n");
 	else if (index == number_of_times_each_philosopher_must_eat)
-		printf("philo: error in optional argument: (%s)\n", OPTIONAL);
+		printf("philosophers: error in optional argument: (%s)\n", OPTIONAL);
+	return ;
 }

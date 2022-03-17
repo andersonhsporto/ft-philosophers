@@ -6,13 +6,13 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 14:55:49 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/16 23:21:16 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/16 23:49:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_isspace(int c);
+static int	ft_isspace(int c);
 
 int	ft_atoi(const char *str)
 {
@@ -42,7 +42,7 @@ int	ft_atoi(const char *str)
 	return (sign * (int)number);
 }
 
-int	ft_isspace(int c)
+static int	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
 	{
