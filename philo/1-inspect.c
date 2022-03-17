@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inspect.c                                          :+:      :+:    :+:   */
+/*   1-inspect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:03:27 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/16 23:47:07 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/17 02:09:07 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static int	atoi_fchar(char *string)
 	while (string[index] != '\0')
 	{
 		if (inspect_char(string[index]))
+		{
 			return (-1);
+		}
 		index++;
 	}
 	return (ft_atoi(string));
