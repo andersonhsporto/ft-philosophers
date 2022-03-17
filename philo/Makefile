@@ -2,7 +2,7 @@ NAME	= philo
 
 CC		= gcc
 
-CFLAGS	= -Wall #-Wextra -Werror
+CFLAGS	= -Wall #-g #-Wextra -Werror
 
 HEADER	= philosophers.h
 
