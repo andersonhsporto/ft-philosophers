@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:48:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/17 00:30:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/17 01:00:11 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_philo	phile;
+	t_philo	data_philo;
 
 	if (inspect_args(argc, argv))
 	{
-		phile = init_args(argv);
+		data_philo = init_args(argv);
 		printf("%d\n", phile.optional);
 	}
 	return (EXIT_FAILURE);
