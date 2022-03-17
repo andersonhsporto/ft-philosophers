@@ -6,7 +6,7 @@ CFLAGS	= -Wall #-g #-Wextra -Werror
 
 HEADER	= philosophers.h
 
-SRC		= 0-philosophers.c 1-inspect.c 2-inspect_utils.c 3-ft_atoi.c
+SRC		= 0-philosophers.c 1-inspect.c 2-inspect_utils.c 3-ft_atoi.c 4-init.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
