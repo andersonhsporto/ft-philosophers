@@ -1,12 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/16 23:22:02 by anhigo-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/time.h>
 # include <string.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <sys/time.h>
 
+# define OPTIONAL "number of times each philosopher must eat"
+
+enum	e_arg
+{
+	number_of_philosophers = 1,
+	time_to_die,
+	time_to_eat,
+	time_to_sleep,
+	number_of_times_each_philosopher_must_eat
+};
+
+typedef struct s_philo
+{
+	int	temp;
+}	t_philo;
+
+int	inspect_args(int argc, char **argv);
 
 #endif

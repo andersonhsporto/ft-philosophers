@@ -4,7 +4,7 @@ CC		= gcc
 
 CFLAGS	= -Wall #-Wextra -Werror
 
-SRC		= philosophers.c
+SRC		= ft_atoi.c inspect.c inspect_utils.c philosophers.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -12,7 +12,6 @@ SRC		= philosophers.c
 OBJ		= $(SRC:%.c=%.o)
 
 all: $(NAME)
-
 
 $(NAME): $(OBJ)
 	rm -rf $(NAME)
@@ -23,5 +22,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+
+re: fclean all
 
 .PHONY: all bonus clean fclean re
