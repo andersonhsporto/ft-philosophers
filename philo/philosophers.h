@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/17 00:06:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/17 00:08:53 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ typedef struct s_philo
 	int	optional;
 }	t_philo;
 
-int	inspect_args(int argc, char **argv);
-int	ft_atoi(const char *str);
-int	inspect_char(int c);
+int		inspect_args(int argc, char **argv);
+int		ft_atoi(const char *str);
+int		inspect_char(int c);
+
+t_philo	*init_args(char **argv);
 
 #endif
