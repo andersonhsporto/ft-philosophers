@@ -54,3 +54,8 @@ dkms.conf
 # Files
 .vscode
 ./philo
+
+# Extra
+teste.c
+0-testes
+

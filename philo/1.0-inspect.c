@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1-inspect.c                                        :+:      :+:    :+:   */
+/*   1.0-inspect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:03:27 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/17 02:09:07 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/21 01:13:11 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	inspect_args(int argc, char **argv)
 		}
 		return (1);
 	}
-	printf("philosophers: wrong number of arguments\n");
+	printf("philosophers: error wrong number of arguments\n");
 	return (0);
 }
 
