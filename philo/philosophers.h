@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 03:02:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/21 03:09:41 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			inspect_char(int c);
 
 t_philo		init_args(char **argv);
 
-t_thinker	*lstnew_think(int index, pthread_t thread);
+t_thinker	*lstnew_think(int index);
 t_thinker	*lstlast_think(t_thinker *lst);
 void		lstadd_back_think(t_thinker **lst, t_thinker *new);
 int			lstsize_think(t_thinker *lst);

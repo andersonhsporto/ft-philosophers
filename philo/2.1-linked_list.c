@@ -6,13 +6,13 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 03:00:46 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/21 03:22:18 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_thinker	*lstnew_think(int index, pthread_t thread)
+t_thinker	*lstnew_think(int index)
 {
 	t_thinker	*element;
 
@@ -20,7 +20,6 @@ t_thinker	*lstnew_think(int index, pthread_t thread)
 	if (element)
 	{
 		element->index = index;
-		element->thread = thread;
 		element->next = (0);
 		return (element);
 	}
@@ -66,4 +65,19 @@ int	lstsize_think(t_thinker *lst)
 		i++;
 	}
 	return (i);
+}
+
+t_thinker	*start_list(int size)
+{
+	t_thinker	*list;
+	int			index;
+
+	list = lstnew_think(0);
+	index = 1;
+	while (index < size)
+	{
+		lstadd_back_think(list, lstnew_think(index));
+		index++;
+	}
+	return (list);
 }

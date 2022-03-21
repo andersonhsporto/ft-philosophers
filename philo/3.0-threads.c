@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0-philosophers.c                                   :+:      :+:    :+:   */
+/*   3.0-threads.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 23:48:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 03:17:32 by anhigo-s         ###   ########.fr       */
+/*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/21 03:23:12 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+void* routine(void)
 {
-	t_philo	data_philo;
+    printf("AQUI racional \n");
+}
 
-	if (inspect_args(argc, argv))
+void	teste(t_philo *data)
+{
+	printf("TESTE %d\n", data->nbr_philo);
+	int	i = data->nbr_philo;
+	t_thinker	*list = start_list(data->nbr_philo);
+	i = 0;
+	while (i < data->nbr_philo)
 	{
-		data_philo = init_args(argv);
-		teste(&data_philo);
-		return (EXIT_SUCCESS);
+		pthread_create(&list->thread, NULL, &routine, NULL);
+		i++;
 	}
-	return (EXIT_FAILURE);
+	return ;
 }
