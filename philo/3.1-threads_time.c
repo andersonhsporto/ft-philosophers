@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2.0-init.c                                         :+:      :+:    :+:   */
+/*   3.1-threads_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 00:00:31 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 21:24:53 by anhigo-s         ###   ########.fr       */
+/*   Created: 2022/03/21 16:27:36 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/21 16:56:24 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_philo	init_args(char **argv)
+size_t	ms_get_timeofday(void)
 {
-	t_philo	data_struct;
+	struct timeval	ts;
+	size_t			milliseconds;
 
-	data_struct.args.temp = 0;
-	data_struct.args.nbr_philo = ft_atoi(argv[1]);
-	data_struct.args.time_die = ft_atoi(argv[2]);
-	data_struct.args.time_eat = ft_atoi(argv[3]);
-	data_struct.args.time_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		data_struct.args.optional = ft_atoi(argv[5]);
-	return (data_struct);
+	gettimeofday(&ts, NULL);
+	milliseconds = ((size_t)ts.tv_sec * 1000) + (ts.tv_sec / 1000);
+	return (milliseconds);
 }

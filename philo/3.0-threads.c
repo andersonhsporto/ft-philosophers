@@ -6,27 +6,70 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 03:23:12 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:39:09 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void* routine(void)
-{
-    printf("AQUI racional \n");
-}
+void	*routine(void *list);
+int		create_threads(t_philo *data);
+int		join_threads(t_philo *data);
 
 void	teste(t_philo *data)
 {
-	printf("TESTE %d\n", data->nbr_philo);
-	int	i = data->nbr_philo;
-	t_thinker	*list = start_list(data->nbr_philo);
-	i = 0;
-	while (i < data->nbr_philo)
+	data->list = start_list(data);
+	printf("index fist node %d\n", data->list->index);
+	if (!create_threads(data))
 	{
-		pthread_create(&list->thread, NULL, &routine, NULL);
-		i++;
+		printf("Error de thread\n");
+		//free no que tava alocado
 	}
-	return ;
+	// if (!join_threads(data))
+	// {
+	// 	printf("Error join\n");
+	// }
+}
+
+int	create_threads(t_philo *data)
+{
+	t_thinker	*temp;
+
+	temp = data->list;
+	while (temp)
+	{
+		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
+		{
+			return (0);
+		}
+		if (pthread_detach(temp->thread))
+		{
+			return (0);
+		}
+		temp->last_meal = ms_get_timeofday();
+		temp = temp->next;
+	}
+	return (1);
+}
+
+int	join_threads(t_philo *data)
+{
+	t_thinker	*temp;
+
+	temp = data->list;
+	while (temp)
+	{
+		if (pthread_join(temp->thread, NULL))
+		{
+			return (0);
+		}
+		temp = temp->next;
+	}
+	return (1);
+}
+
+void	*routine(void *list)
+{
+	t_thinker	*temp = (t_thinker *)list;
+	printf("<< racional %d time %zu\n", temp->index, temp->last_meal);
 }

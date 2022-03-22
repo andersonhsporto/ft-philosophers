@@ -6,13 +6,15 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 03:22:18 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:46:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_thinker	*lstnew_think(int index)
+int	is_odd(int index);
+
+t_thinker	*lstnew_think(int index, t_args	*args)
 {
 	t_thinker	*element;
 
@@ -20,10 +22,24 @@ t_thinker	*lstnew_think(int index)
 	if (element)
 	{
 		element->index = index;
+		element->status = is_odd(index);
+		element->argo = args;
 		element->next = (0);
 		return (element);
 	}
 	return (0);
+}
+
+int	is_odd(int index)
+{
+	if (index % 2 == 0)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }
 
 t_thinker	*lstlast_think(t_thinker *lst)
@@ -67,17 +83,31 @@ int	lstsize_think(t_thinker *lst)
 	return (i);
 }
 
-t_thinker	*start_list(int size)
+t_thinker	*start_list(t_philo *data)
 {
 	t_thinker	*list;
 	int			index;
 
-	list = lstnew_think(0);
+	list = lstnew_think(0, &(data->args));
 	index = 1;
-	while (index < size)
+	while (index < data->args.nbr_philo)
 	{
-		lstadd_back_think(list, lstnew_think(index));
+		lstadd_back_think(&list, lstnew_think(index, &(data->args)));
 		index++;
 	}
+	// print_list(list);
 	return (list);
+}
+
+//remover
+void print_list(t_thinker *list)
+{
+	t_thinker *temp = list;
+
+	while (temp)
+	{
+		printf("printf list: %d node index\n", temp->index);
+		temp = temp->next;
+	}
+	return ;
 }
