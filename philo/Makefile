@@ -31,3 +31,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re
+
+p: all
+	./philo 5 1 1 1

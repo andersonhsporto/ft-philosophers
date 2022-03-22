@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/22 15:39:09 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:16:20 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ void	teste(t_philo *data)
 {
 	data->list = start_list(data);
 	printf("index fist node %d\n", data->list->index);
+
 	if (!create_threads(data))
 	{
 		printf("Error de thread\n");
 		//free no que tava alocado
 	}
-	// if (!join_threads(data))
-	// {
-	// 	printf("Error join\n");
-	// }
+	if (!join_threads(data))
+	{
+		printf("Error join\n");
+	}
 }
 
 int	create_threads(t_philo *data)
@@ -36,16 +37,19 @@ int	create_threads(t_philo *data)
 	t_thinker	*temp;
 
 	temp = data->list;
+	printf("teste =%d %d\n", data->i, data->list->index);
 	while (temp)
 	{
+		printf("index 1 >> %d \n", temp->data->i);
 		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
 		{
 			return (0);
 		}
-		if (pthread_detach(temp->thread))
-		{
-			return (0);
-		}
+		// if (pthread_detach(temp->thread))
+		// {
+		// 	return (0);
+		// }
+		printf("index 2 >> %d \n", temp->data->i);
 		temp->last_meal = ms_get_timeofday();
 		temp = temp->next;
 	}
@@ -71,5 +75,9 @@ int	join_threads(t_philo *data)
 void	*routine(void *list)
 {
 	t_thinker	*temp = (t_thinker *)list;
-	printf("<< racional %d time %zu\n", temp->index, temp->last_meal);
+
+	printf("<< racional %d time %zu teste = %d\n", temp->index, temp->last_meal, temp->data->i);
+	pthread_mutex_lock(&temp->data->mutex);
+	printf("<< racional %d time %zu teste = %d\n", temp->index, temp->last_meal, temp->data->i);
+	pthread_mutex_unlock(&temp->data->mutex);
 }

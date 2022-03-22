@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/22 15:44:05 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:40:30 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,16 @@ typedef struct s_thinker
 	pthread_mutex_t		forks;
 	pthread_mutex_t		is_dead;
 	size_t				last_meal;
-	t_args				*argo;
+	struct s_philo		*data;
 	struct s_thinker	*next;
 }	t_thinker;
 
 typedef struct s_philo
 {
-	t_args		args;
-	t_thinker	*list;
+	pthread_mutex_t	mutex;
+	int 			i;
+	t_args			args;
+	t_thinker		*list;
 }	t_philo;
 
 int			inspect_args(int argc, char **argv);
@@ -80,11 +82,13 @@ int			inspect_char(int c);
 
 t_philo		init_args(char **argv);
 
-t_thinker	*lstnew_think(int index, t_args	*args);
+t_thinker	*lstnew_think(int index, t_philo *data);
 t_thinker	*lstlast_think(t_thinker *lst);
 void		lstadd_back_think(t_thinker **lst, t_thinker *new);
 int			lstsize_think(t_thinker *lst);
 t_thinker	*start_list(t_philo *data);
 
 size_t		ms_get_timeofday(void);
+
+void	teste(t_philo *data);
 #endif
