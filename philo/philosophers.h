@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/22 19:40:30 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:57:47 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@
 # define THINK		"is thinking"
 # define DIE		"died"
 
-// typedef enum e_actions
-// {
-// 	tk_fork,
-// 	eating,
-// 	is_sleep,
-// 	thinking,
-// 	dead,
-// 	odd,
-// 	even
-// };
+typedef enum e_actions
+{
+	tk_fork,
+	eating,
+	sleeping,
+	thinking,
+	dead,
+	odd,
+	even
+};
 
 enum	e_arg
 {

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/22 20:16:20 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:08:38 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	create_threads(t_philo *data)
 	printf("teste =%d %d\n", data->i, data->list->index);
 	while (temp)
 	{
-		printf("index 1 >> %d \n", temp->data->i);
 		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
 		{
 			return (0);
@@ -49,7 +48,6 @@ int	create_threads(t_philo *data)
 		// {
 		// 	return (0);
 		// }
-		printf("index 2 >> %d \n", temp->data->i);
 		temp->last_meal = ms_get_timeofday();
 		temp = temp->next;
 	}
@@ -70,14 +68,4 @@ int	join_threads(t_philo *data)
 		temp = temp->next;
 	}
 	return (1);
-}
-
-void	*routine(void *list)
-{
-	t_thinker	*temp = (t_thinker *)list;
-
-	printf("<< racional %d time %zu teste = %d\n", temp->index, temp->last_meal, temp->data->i);
-	pthread_mutex_lock(&temp->data->mutex);
-	printf("<< racional %d time %zu teste = %d\n", temp->index, temp->last_meal, temp->data->i);
-	pthread_mutex_unlock(&temp->data->mutex);
 }
