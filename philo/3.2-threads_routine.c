@@ -6,13 +6,14 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 14:35:13 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:41:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 void	bedtime(t_thinker *list);
+void	lunchtime(t_thinker *list);
 
 void	*routine(void *list)
 {

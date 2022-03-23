@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/22 22:00:26 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:26:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_odd(int index);
 
-t_thinker	*lstnew_think(int index, t_philo *data)
+t_thinker	*lstnew_think(int index, t_philo *data, int size)
 {
 	t_thinker	*element;
 
@@ -24,10 +24,12 @@ t_thinker	*lstnew_think(int index, t_philo *data)
 		element->index = index;
 		element->status = is_odd(index);
 		element->data = data;
-		element->next = (0);
+		element->next = element;
+		element->prev = element;
+		element->list_size = size;
 		return (element);
 	}
-	return (0);
+	return (NULL);
 }
 
 int	is_odd(int index)
@@ -42,31 +44,19 @@ int	is_odd(int index)
 	}
 }
 
-t_thinker	*lstlast_think(t_thinker *lst)
+void	lstadd_back_think(t_thinker *lst, t_thinker *new)
 {
 	if (lst)
 	{
-		while (lst->next != 0)
-		{
-			lst = lst->next;
-		}
-		return (lst);
-	}
-	return (0);
-}
-
-void	lstadd_back_think(t_thinker **lst, t_thinker *new)
-{
-	t_thinker	*temp;
-
-	if (*lst)
-	{
-		temp = lstlast_think(*lst);
-		temp->next = new;
+		new->next = lst->next;
+		new->prev = lst;
+		(lst)->next->prev = new;
+		(lst)->next = new;
+		(lst) = new;
 	}
 	else
 	{
-		*lst = new;
+		lst = new;
 	}
 }
 
@@ -88,11 +78,11 @@ t_thinker	*start_list(t_philo *data)
 	t_thinker	*list;
 	int			index;
 
-	list = lstnew_think(0, data);
+	list = lstnew_think(data->args.nbr_philo, data, data->args.nbr_philo);
 	index = 1;
 	while (index < data->args.nbr_philo)
 	{
-		lstadd_back_think(&list, lstnew_think(index, data));
+		lstadd_back_think(list, lstnew_think(index, data, data->args.nbr_philo));
 		index++;
 	}
 	// print_list(list);
@@ -102,11 +92,16 @@ t_thinker	*start_list(t_philo *data)
 //remover
 void print_list(t_thinker *list)
 {
-	t_thinker *temp = list;
+	t_thinker	*temp;
+	int			index;
 
-	while (temp)
+	printf(">>>size: %d\n", list->list_size);
+	temp = list;
+	index = list->list_size;
+	while (index > 0)
 	{
-		printf("printf list: %d node index\n", temp->index);
+		index--;
+		printf(">>>list: %d node index\n", temp->index);
 		temp = temp->next;
 	}
 	return ;

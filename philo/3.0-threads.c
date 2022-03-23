@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 00:08:38 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:24:57 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void	teste(t_philo *data)
 int	create_threads(t_philo *data)
 {
 	t_thinker	*temp;
+	int			index;
 
 	temp = data->list;
 	printf("teste =%d %d\n", data->i, data->list->index);
-	while (temp)
+	index = data->list->list_size;
+	while (index > 0)
 	{
 		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
 		{
@@ -50,6 +52,7 @@ int	create_threads(t_philo *data)
 		// }
 		temp->last_meal = ms_get_timeofday();
 		temp = temp->next;
+		index--;
 	}
 	return (1);
 }
