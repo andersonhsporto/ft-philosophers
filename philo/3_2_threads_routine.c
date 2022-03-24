@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 12:15:30 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:55:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	*routine(void *list)
 	{
 		fork_mutex_handler(list, get_fork);
 		lunchtime(list);
+		fork_mutex_handler(list, drop_fork);
 		if (temp->nbr_snacks == temp->data->args.optional)
 			break ;
-		fork_mutex_handler(list, drop_fork);
 		naptime(list);
 		reflection_time(list);
 	}

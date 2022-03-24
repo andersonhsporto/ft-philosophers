@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3.0-threads.c                                      :+:      :+:    :+:   */
+/*   3_0_threads.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 02:42:04 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:55:59 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,9 @@ int	create_threads(t_philo *data)
 		{
 			return (0);
 		}
-		// if (pthread_detach(temp->thread))
-		// {
-		// 	return (0);
-		// }
-		// temp->last_meal = ms_get_timeofday();
 		temp = temp->next;
 		index--;
+		printf("loop\n");
 	}
 	return (1);
 }
