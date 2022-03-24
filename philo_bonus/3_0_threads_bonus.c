@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   3_0_threads.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:06:37 by anhigo-s         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philosophers.h"
 
 void	create_mutex(t_philo *data);
@@ -23,6 +11,7 @@ void	start_threads(t_philo *data)
 	if (!create_threads(data))
 	{
 		printf("Error de thread\n");
+		//free no que tava alocado
 	}
 	if (!join_threads(data))
 	{

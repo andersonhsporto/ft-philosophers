@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   2_1_linked_list.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:06:29 by anhigo-s         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philosophers.h"
 
 int	is_odd(int index);
@@ -77,5 +65,24 @@ t_thinker	*start_list(t_philo *data)
 			lstnew_think(index, data, data->args.nbr_philo));
 		index++;
 	}
+	// print_list(list);
 	return (list);
+}
+
+//remover
+void	print_list(t_thinker *list)
+{
+	t_thinker	*temp;
+	int			index;
+
+	printf(">>>size: %d\n", list->list_size);
+	temp = list;
+	index = list->list_size;
+	while (index > 0)
+	{
+		index--;
+		printf(">>>list: %d node index\n", temp->index);
+		temp = temp->next;
+	}
+	return ;
 }
