@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:06:37 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:10:30 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	start_threads(t_philo *data)
 	create_mutex(data);
 	if (!create_threads(data))
 	{
-		printf("Error de thread\n");
+		printf("philosophers: thread error\n");
 	}
 	if (!join_threads(data))
 	{
-		printf("Error join\n");
+		printf("philosophers: join error\n");
 	}
 	is_alive(data);
 }
