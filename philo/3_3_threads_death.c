@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 13:30:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:04:31 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	is_alive(t_philo *data)
 		{
 			printf("%ld    %d   %s\n", (ms_timeofday() - temp->time_start), \
 				temp->index, DIE);
+			temp->status = dead;
 			temp->loop = 0;
 			index++;
+			pthread_mutex_destroy(&temp->is_dead);
 		}
 		temp = temp->next;
 	}
