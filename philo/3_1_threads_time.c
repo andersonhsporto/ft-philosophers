@@ -6,23 +6,24 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:27:36 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 13:30:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:21:22 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-size_t	ms_timeofday(void)
+long	ms_timeofday(void)
 {
-	struct timeval	ts;
+	struct timeval	current_time;
 
-	gettimeofday(&ts, NULL);
-	return ((ts.tv_sec * 1000) + (ts.tv_usec / 1000));
+	gettimeofday(&current_time, NULL);
+	//printf(">>>>%ld \n", (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
-void	waiting(size_t time)
+void	waiting(unsigned long time)
 {
-	size_t	curr;
+	unsigned long	curr;
 
 	curr = ms_timeofday();
 	while (ms_timeofday() - curr < time)

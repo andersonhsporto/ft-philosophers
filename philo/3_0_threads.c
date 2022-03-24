@@ -6,30 +6,47 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 14:04:47 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:19:53 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*routine(void *list);
+void	create_mutex(t_philo *data);
 int		create_threads(t_philo *data);
 int		join_threads(t_philo *data);
 
-void	teste(t_philo *data)
+void	start_threads(t_philo *data)
 {
 	data->list = start_list(data);
-	
+	create_mutex(data);
 	if (!create_threads(data))
 	{
 		printf("Error de thread\n");
 		//free no que tava alocado
 	}
-	is_alive(data);
 	if (!join_threads(data))
 	{
 		printf("Error join\n");
 	}
+	is_alive(data);
+}
+
+void	create_mutex(t_philo *data)
+{
+	t_thinker	*temp;
+	int			index;
+
+	temp = data->list;
+	index = data->list->list_size;
+	while (index > 0)
+	{
+		pthread_mutex_init(&temp->fork, NULL);
+		pthread_mutex_init(&temp->is_dead, NULL);
+		index--;
+		temp = temp->next;
+	}
+	return ;
 }
 
 int	create_threads(t_philo *data)

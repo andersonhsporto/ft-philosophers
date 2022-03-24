@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 14:01:23 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:24:08 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*routine(void *list)
 	temp->time_start = ms_timeofday();
 	if (temp->odd == true)
 		usleep(50);
+	printf("start day\n");
 	while (temp->loop && temp->status != dead)
 	{
 		fork_mutex_handler(list, get_fork);
@@ -35,6 +36,7 @@ void	*routine(void *list)
 		naptime(list);
 		reflection_time(list);
 	}
+	temp->status = endgame;
 	return (NULL);
 }
 
@@ -46,6 +48,7 @@ void	fork_mutex_handler(t_thinker *list, int status)
 		pthread_mutex_lock(&list->prev->fork);
 		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
 			list->index, FORK);
+		pthread_mutex_unlock(&list->is_dead);
 		pthread_mutex_lock(&list->fork);
 		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
 			list->index, FORK);
@@ -68,9 +71,9 @@ void	lunchtime(t_thinker *list)
 			list->index, EAT);
 		list->status = eating;
 		list->nbr_snacks++;
-		waiting(list->data->args.time_eat);
 		list->last_meal = ms_timeofday();
 		pthread_mutex_unlock(&list->is_dead);
+		waiting(list->data->args.time_eat);
 	}
 	return ;
 }
