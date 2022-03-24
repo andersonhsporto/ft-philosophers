@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 21:55:01 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:42:04 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int		join_threads(t_philo *data);
 void	teste(t_philo *data)
 {
 	data->list = start_list(data);
-	printf("index fist node %d\n", data->list->index);
-
 	if (!create_threads(data))
 	{
 		printf("Error de thread\n");
@@ -38,7 +36,6 @@ int	create_threads(t_philo *data)
 	int			index;
 
 	temp = data->list;
-	printf("teste =%d %d\n", data->i, data->list->index);
 	index = data->list->list_size;
 	while (index > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:27:36 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 02:24:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 04:01:05 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,16 @@
 size_t	ms_get_timeofday(void)
 {
 	struct timeval	ts;
-	size_t			milliseconds;
 
 	gettimeofday(&ts, NULL);
-	milliseconds = (ts.tv_sec * 1000) + (ts.tv_sec / 1000);
-	return (milliseconds);
+	return ((ts.tv_sec * 1000) + (ts.tv_usec / 1000));
 }
 
-size_t	diff_time(size_t start)
+void	waiting(size_t time)
 {
-	size_t	what_time;
-	size_t	diff;
+	size_t	curr;
 
-	what_time = ms_get_timeofday();
-	diff = what_time - start;
-	return (diff);
+	curr = ms_get_timeofday();
+	while (ms_get_timeofday() - curr < time)
+		usleep(40);
 }

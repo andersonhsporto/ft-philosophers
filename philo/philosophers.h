@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 01:57:55 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 03:47:17 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef enum e_bool
 
 typedef enum e_actions
 {
-	tk_fork,
+	get_fork,
+	drop_fork,
 	eating,
 	sleeping,
 	thinking,
@@ -80,10 +81,10 @@ typedef struct s_thinker
 
 typedef struct s_philo
 {
-	pthread_mutex_t	mutex;
-	int 			i;
-	t_args			args;
-	t_thinker		*list;
+	pthread_mutex_t		is_printing;
+	int 				i;
+	t_args				args;
+	t_thinker			*list;
 }	t_philo;
 
 int			inspect_args(int argc, char **argv);
@@ -98,7 +99,8 @@ void		lstadd_back_think(t_thinker *lst, t_thinker *new);
 int			lstsize_think(t_thinker *lst);
 t_thinker	*start_list(t_philo *data);
 
-size_t		ms_get_timeofday(void);
-
 void	teste(t_philo *data);
+
+void	ft_usleep(unsigned long time);
+size_t	diff_time(size_t start);
 #endif

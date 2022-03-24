@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 02:01:47 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:42:51 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_thinker	*lstnew_think(int index, t_philo *data, int size)
 		element->index = index;
 		element->odd = is_odd(index);
 		element->status = 0;
+		element->time_start = 0;
 		element->data = data;
 		element->next = element;
 		element->prev = element;
