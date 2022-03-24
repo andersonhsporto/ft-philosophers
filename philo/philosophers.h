@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 15:27:16 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:00:02 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,6 @@ long		ms_timeofday(void);
 void		waiting(unsigned long time);
 
 void		is_alive(t_philo *data);
+
+void		free_think(t_philo *data);
 #endif

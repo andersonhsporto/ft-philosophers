@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_philosophers.c                                   :+:      :+:    :+:   */
+/*   4_free.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 23:48:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 15:54:07 by anhigo-s         ###   ########.fr       */
+/*   Created: 2022/03/24 15:53:16 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/24 15:59:50 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+void	free_think(t_philo *data)
 {
-	t_philo	data_philo;
+	t_thinker	*temp;
+	int			index;
 
-	if (inspect_args(argc, argv))
+	index = data->args.nbr_philo;
+	while (index > 0)
 	{
-		data_philo = init_args(argv);
-		start_threads(&data_philo);
-		free_think(&data_philo);
-		return (EXIT_SUCCESS);
+		temp = data->list;
+		data->list = data->list->next;
+		free(temp);
+		index--;
 	}
-	return (EXIT_FAILURE);
+	return ;
 }
