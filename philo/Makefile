@@ -6,10 +6,10 @@ CFLAGS	= -Wall -g #-Wextra -Werror
 
 HEADER	= philosophers.h
 
-SRC		= 	0-philosophers.c \
-			1.0-inspect.c	1.1-inspect_utils.c \
-			2.0-init.c		2.1-linked_list.c \
-			3.0-threads.c	3.1-threads_time.c	3.2-threads_routine.c
+SRC		= 	0_philosophers.c \
+			1_0_inspect.c	1_1_inspect_utils.c \
+			2_0_init.c		2_1_linked_list.c \
+			3_0_threads.c	3_1_threads_time.c	3_2_threads_routine.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -33,4 +33,4 @@ re: fclean all
 .PHONY: all bonus clean fclean re
 
 p: all
-	./philo 2 1 1 1
+	./philo 2 1 60 100 2

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 03:47:17 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:46:12 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef enum e_actions
 	get_fork,
 	drop_fork,
 	eating,
-	sleeping,
-	thinking,
+	rest,
+	reflection,
 	dead,
 	odd,
 	even,
@@ -68,6 +68,7 @@ typedef struct s_thinker
 	int					index;
 	int					odd;
 	int					status;
+	int					nbr_snacks;
 	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
