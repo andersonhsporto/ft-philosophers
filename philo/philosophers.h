@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 16:08:15 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:38:32 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define THINK		"is thinking"
 # define DIE		"died"
 
+typedef enum e_bool
+{
+	false,
+	true
+};
+
 typedef enum e_actions
 {
 	tk_fork,
@@ -34,7 +40,7 @@ typedef enum e_actions
 	thinking,
 	dead,
 	odd,
-	even
+	even,
 };
 
 enum	e_arg
@@ -60,6 +66,7 @@ typedef struct s_thinker
 {
 	int					index;
 	int					status;
+	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		forks;
 	pthread_mutex_t		is_dead;

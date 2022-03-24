@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 16:26:48 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:38:49 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	is_odd(int index)
 {
 	if (index % 2 == 0)
 	{
-		return (1);
+		return (false);
 	}
 	else
 	{
-		return (0);
+		return (true);
 	}
 }
 
