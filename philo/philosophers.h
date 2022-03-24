@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 11:46:12 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:33:32 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 # define THINK		"is thinking"
 # define DIE		"died"
 
-typedef enum e_bool
+enum e_bool
 {
 	false,
 	true
 };
 
-typedef enum e_actions
+enum e_actions
 {
 	get_fork,
 	drop_fork,
@@ -69,6 +69,7 @@ typedef struct s_thinker
 	int					odd;
 	int					status;
 	int					nbr_snacks;
+	int					loop;
 	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
@@ -83,7 +84,6 @@ typedef struct s_thinker
 typedef struct s_philo
 {
 	pthread_mutex_t		is_printing;
-	int 				i;
 	t_args				args;
 	t_thinker			*list;
 }	t_philo;
@@ -97,11 +97,12 @@ t_philo		init_args(char **argv);
 t_thinker	*lstnew_think(int index, t_philo *data, int size);
 t_thinker	*lstlast_think(t_thinker *lst);
 void		lstadd_back_think(t_thinker *lst, t_thinker *new);
-int			lstsize_think(t_thinker *lst);
 t_thinker	*start_list(t_philo *data);
 
-void	teste(t_philo *data);
+void		teste(t_philo *data);
 
-void	ft_usleep(unsigned long time);
-size_t	diff_time(size_t start);
+size_t		ms_timeofday(void);
+void		waiting(size_t time);
+
+void		is_alive(t_philo *data);
 #endif

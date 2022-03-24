@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_0_init.c                                         :+:      :+:    :+:   */
+/*   3_3_threads_death.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 00:00:31 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 13:33:40 by anhigo-s         ###   ########.fr       */
+/*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/24 13:30:08 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_philo	init_args(char **argv)
+void	is_alive(t_philo *data)
 {
-	t_philo	data_struct;
+	t_thinker	*temp;
+	int			index;
 
-	data_struct.args.temp = 0;
-	data_struct.args.nbr_philo = ft_atoi(argv[1]);
-	data_struct.args.time_die = ft_atoi(argv[2]);
-	data_struct.args.time_eat = ft_atoi(argv[3]);
-	data_struct.args.time_sleep = ft_atoi(argv[4]);
-	if (argv[5])
+	temp = data->list;
+	index = 0;
+	while (index < data->args.nbr_philo)
 	{
-		data_struct.args.optional = ft_atoi(argv[5]);
-		return (data_struct);
+		if ((ms_timeofday() - temp->last_meal) >= data->args.time_die \
+			&& temp->loop == 1)
+		{
+			printf("%ld    %d   %s\n", (ms_timeofday() - temp->time_start), \
+				temp->index, DIE);
+			temp->loop = 0;
+			index++;
+		}
+		temp = temp->next;
 	}
-	data_struct.args.optional = 0;
-	return (data_struct);
 }

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 11:47:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:29:16 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_thinker	*lstnew_think(int index, t_philo *data, int size)
 		element->status = 0;
 		element->time_start = 0;
 		element->nbr_snacks = 0;
+		element->loop = 1;
 		element->data = data;
 		element->next = element;
 		element->prev = element;
@@ -63,19 +64,6 @@ void	lstadd_back_think(t_thinker *lst, t_thinker *new)
 	}
 }
 
-int	lstsize_think(t_thinker *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
-
 t_thinker	*start_list(t_philo *data)
 {
 	t_thinker	*list;
@@ -85,7 +73,8 @@ t_thinker	*start_list(t_philo *data)
 	index = 1;
 	while (index < data->args.nbr_philo)
 	{
-		lstadd_back_think(list, lstnew_think(index, data, data->args.nbr_philo));
+		lstadd_back_think(list, \
+			lstnew_think(index, data, data->args.nbr_philo));
 		index++;
 	}
 	// print_list(list);
@@ -93,7 +82,7 @@ t_thinker	*start_list(t_philo *data)
 }
 
 //remover
-void print_list(t_thinker *list)
+void	print_list(t_thinker *list)
 {
 	t_thinker	*temp;
 	int			index;

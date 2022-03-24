@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 12:55:59 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:17:32 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	teste(t_philo *data)
 		printf("Error de thread\n");
 		//free no que tava alocado
 	}
+	is_alive(data);
 	if (!join_threads(data))
 	{
 		printf("Error join\n");
@@ -45,7 +46,6 @@ int	create_threads(t_philo *data)
 		}
 		temp = temp->next;
 		index--;
-		printf("loop\n");
 	}
 	return (1);
 }
