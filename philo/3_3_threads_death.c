@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 15:25:28 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:26:35 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	is_alive(t_philo *data)
 	{
 		if (temp->status == endgame)
 			break ;
-		if ((ms_timeofday() - temp->last_meal) >= data->args.time_die && temp->status != endgame)
+		if ((ms_timeofday() - temp->last_meal) >= data->args.time_die)
 		{
-			printf("%ld    %d   %s\n", (ms_timeofday() - (long)temp->time_start), \
+			printf("%ld    %d   %s\n", (ms_timeofday() - temp->time_start), \
 				temp->index, DIE);
 			temp->status = dead;
 			temp->loop = 0;
