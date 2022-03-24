@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 22:38:49 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:01:47 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_thinker	*lstnew_think(int index, t_philo *data, int size)
 	if (element)
 	{
 		element->index = index;
-		element->status = is_odd(index);
+		element->odd = is_odd(index);
+		element->status = 0;
 		element->data = data;
 		element->next = element;
 		element->prev = element;
@@ -50,9 +51,9 @@ void	lstadd_back_think(t_thinker *lst, t_thinker *new)
 	{
 		new->next = lst->next;
 		new->prev = lst;
-		(lst)->next->prev = new;
-		(lst)->next = new;
-		(lst) = new;
+		lst->next->prev = new;
+		lst->next = new;
+		lst = new;
 	}
 	else
 	{

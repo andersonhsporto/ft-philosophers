@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/23 22:38:32 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:57:55 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ typedef struct s_args
 typedef struct s_thinker
 {
 	int					index;
+	int					odd;
 	int					status;
 	size_t				time_start;
 	pthread_t			thread;
-	pthread_mutex_t		forks;
+	pthread_mutex_t		fork;
 	pthread_mutex_t		is_dead;
 	size_t				last_meal;
 	struct s_philo		*data;

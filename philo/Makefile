@@ -33,4 +33,4 @@ re: fclean all
 .PHONY: all bonus clean fclean re
 
 p: all
-	./philo 4 1 1 1
+	./philo 2 1 1 1
