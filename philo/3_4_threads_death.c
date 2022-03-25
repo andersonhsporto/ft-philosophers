@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3_3_threads_death.c                                :+:      :+:    :+:   */
+/*   3_4_threads_death.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 21:45:29 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:54:16 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	philo_is_dead(t_philo *data)
+{
+	pthread_mutex_lock(&data->death_lock);
+	if (data->is_dead == true)
+	{
+		pthread_mutex_unlock(&data->death_lock);
+		return (true);
+	}
+	else
+		pthread_mutex_unlock(&data->death_lock);
+	return (false);
+}
 
 void	is_alive(t_philo *data)
 {

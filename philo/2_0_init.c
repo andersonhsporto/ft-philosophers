@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 00:00:31 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 13:33:40 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:02:23 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_philo	init_args(char **argv)
 {
 	t_philo	data_struct;
 
-	data_struct.args.temp = 0;
 	data_struct.args.nbr_philo = ft_atoi(argv[1]);
 	data_struct.args.time_die = ft_atoi(argv[2]);
 	data_struct.args.time_eat = ft_atoi(argv[3]);
@@ -27,5 +26,6 @@ t_philo	init_args(char **argv)
 		return (data_struct);
 	}
 	data_struct.args.optional = 0;
+	data_struct.is_dead = false;
 	return (data_struct);
 }

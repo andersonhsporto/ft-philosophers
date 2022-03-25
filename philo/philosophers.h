@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 21:46:00 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:36:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ enum	e_arg
 
 typedef struct s_args
 {
-	int			temp;
 	int			nbr_philo;
 	int			time_die;
 	int			time_eat;
@@ -84,7 +83,9 @@ typedef struct s_thinker
 
 typedef struct s_philo
 {
-	pthread_mutex_t		is_printing;
+	pthread_mutex_t		death_lock;
+	pthread_mutex_t		print_lock;
+	int					is_dead;
 	t_args				args;
 	t_thinker			*list;
 }	t_philo;

@@ -6,106 +6,88 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 21:47:48 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:27:54 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	fork_mutex_handler(t_thinker *list, int status);
+static void	fork_mutex_handler(t_thinker *list, int action);
 static void	lunchtime(t_thinker *list);
-static void	naptime(t_thinker *list);
-static void	reflection_time(t_thinker *list);
+static void	sleeptime(t_thinker *list);
+static void	thinktime(t_thinker *list);
 
-void	*routine(void *list)
+void	*routine(void *ptr)
 {
-	t_thinker	*temp;
+	t_thinker	*list;
 
-	temp = (t_thinker *)list;
-	temp->time_start = ms_timeofday();
-	if (temp->odd == true)
+	list = (t_thinker *)ptr;
+	list->time_start = ms_timeofday();
+	if (list->odd == true)
 		usleep(50);
-	printf("start day\n");
-	while (temp->loop && temp->status != dead)
+	printf("Start thread -->%d\n", list->index);
+	while (philo_is_dead(list->data) == false)
 	{
-		if (temp->data->args.nbr_philo == 1)
-		{
-			one_philo_exec(list);
-			break ;
-		}
 		fork_mutex_handler(list, get_fork);
 		lunchtime(list);
 		fork_mutex_handler(list, drop_fork);
-		if (temp->nbr_snacks == temp->data->args.optional)
-			break ;
-		naptime(list);
-		reflection_time(list);
+		sleeptime(list);
+		thinktime(list);
 	}
-	temp->status = endgame;
+	list->status = endgame;
 	return (NULL);
 }
 
-static void	fork_mutex_handler(t_thinker *list, int status)
+void	fork_mutex_handler(t_thinker *list, int action)
 {
-	if (status == get_fork)
+	if (action == get_fork && philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->is_dead);
 		pthread_mutex_lock(&list->fork);
-		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
-			list->index, FORK);
-		pthread_mutex_unlock(&list->is_dead);
+		print_action(list, FORK);
+		// if (philo_is_dead(list->data) == false)
+		// 	pthread_mutex_unlock(&list->fork);
 		pthread_mutex_lock(&list->prev->fork);
-		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
-			list->index, FORK);
-		pthread_mutex_unlock(&list->is_dead);
+		print_action(list, FORK);
+		// if (philo_is_dead(list->data) == false)
+		// 	pthread_mutex_unlock(&list->prev->fork);
+		return ;
 	}
 	else
 	{
-		pthread_mutex_unlock(&list->prev->fork);
 		pthread_mutex_unlock(&list->fork);
+		pthread_mutex_unlock(&list->prev->fork);
 	}
-	return ;
 }
 
 static void	lunchtime(t_thinker *list)
 {
-	if (list->status != dead)
+	if (philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->is_dead);
-		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
-			list->index, EAT);
-		list->status = eating;
-		list->nbr_snacks++;
 		list->last_meal = ms_timeofday();
-		pthread_mutex_unlock(&list->is_dead);
+		list->nbr_snacks++;
 		waiting(list->data->args.time_eat);
+		print_action(list, EAT);
 	}
 	return ;
 }
 
-static void	naptime(t_thinker *list)
+static void	sleeptime(t_thinker *list)
 {
-	if (list->status != dead)
+	if (philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->is_dead);
-		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
-			list->index, SLEEP);
-		list->status = rest;
+		list->last_meal = ms_timeofday();
 		waiting(list->data->args.time_sleep);
-		pthread_mutex_unlock(&list->is_dead);
+		print_action(list, SLEEP);
 	}
 	return ;
 }
 
-static void	reflection_time(t_thinker *list)
+static void	thinktime(t_thinker *list)
 {
-	if (list->status != dead)
+	if (philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->is_dead);
-		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
-			list->index, THINK);
-		list->status = reflection;
-		pthread_mutex_unlock(&list->is_dead);
+		list->last_meal = ms_timeofday();
+		print_action(list, THINK);
 	}
 	return ;
 }
