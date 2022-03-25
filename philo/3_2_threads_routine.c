@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 11:27:54 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:34:07 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*routine(void *ptr)
 	list->time_start = ms_timeofday();
 	if (list->odd == true)
 		usleep(50);
-	printf("Start thread -->%d\n", list->index);
+	//printf("Start thread --> %d\n", list->index);
 	while (philo_is_dead(list->data) == false)
 	{
 		fork_mutex_handler(list, get_fork);
@@ -42,7 +42,6 @@ void	fork_mutex_handler(t_thinker *list, int action)
 {
 	if (action == get_fork && philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->fork);
 		print_action(list, FORK);
 		// if (philo_is_dead(list->data) == false)
 		// 	pthread_mutex_unlock(&list->fork);
@@ -64,9 +63,10 @@ static void	lunchtime(t_thinker *list)
 	if (philo_is_dead(list->data) == false)
 	{
 		list->last_meal = ms_timeofday();
-		list->nbr_snacks++;
 		waiting(list->data->args.time_eat);
-		print_action(list, EAT);
+		if (philo_is_dead(list->data) == false)
+			print_action(list, EAT);
+		list->nbr_snacks++;
 	}
 	return ;
 }
@@ -77,7 +77,8 @@ static void	sleeptime(t_thinker *list)
 	{
 		list->last_meal = ms_timeofday();
 		waiting(list->data->args.time_sleep);
-		print_action(list, SLEEP);
+		if (philo_is_dead(list->data) == false)
+			print_action(list, SLEEP);
 	}
 	return ;
 }

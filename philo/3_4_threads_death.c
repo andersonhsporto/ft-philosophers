@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 10:54:16 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:17:35 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	philo_is_dead(t_philo *data)
 {
+	//printf("AQUi2\n");
 	pthread_mutex_lock(&data->death_lock);
 	if (data->is_dead == true)
 	{
@@ -25,26 +26,44 @@ int	philo_is_dead(t_philo *data)
 	return (false);
 }
 
-void	is_alive(t_philo *data)
+int	thread_death(t_thinker *list)
 {
 	t_thinker	*temp;
-	int			index;
 
-	temp = data->list;
-	index = 0;
-	while (index < data->args.nbr_philo)
+	temp = list;
+	if (temp->nbr_snacks == 0 && (ms_timeofday() - temp->time_start) >= temp->data->args.time_die)
 	{
-		if (temp->status == endgame)
-			break ;
-		if ((ms_timeofday() - temp->last_meal) >= data->args.time_die)
-		{
-			printf("%ld    %d   %s\n", (ms_timeofday() - temp->time_start), \
-				temp->index, DIE);
-			temp->status = dead;
-			temp->loop = 0;
-			index++;
-			pthread_mutex_destroy(&temp->is_dead);
-		}
-		temp = temp->next;
+		pthread_mutex_destroy(&temp->data->death_lock);
+		temp->data->is_dead = true;
+		print_action(list, DIE);
+		return (true);
+	}
+	if (temp->nbr_snacks > 0 && (ms_timeofday() - temp->last_meal) >= temp->data->args.time_die)
+	{
+		pthread_mutex_destroy(&temp->data->death_lock);
+		temp->data->is_dead = true;
+		print_action(list, DIE);
+		return (true);
+	}
+	else
+	{
+		return (false);
 	}
 }
+
+void	*death_routine(void *ptr)
+{
+	t_thinker	*list;
+
+	list = (t_thinker *)ptr;
+	while (true)
+	{
+		if ((list->data->args.optional != 0) && list->nbr_snacks >= list->data->args.optional)
+			break ;
+		if (thread_death(list))
+			break ;
+		list = list->next;
+	}
+	return (NULL);
+}
+

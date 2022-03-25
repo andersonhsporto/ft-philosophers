@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 10:36:48 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:36:41 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_thinker
 
 typedef struct s_philo
 {
+	pthread_t			death;
 	pthread_mutex_t		death_lock;
 	pthread_mutex_t		print_lock;
 	int					is_dead;
@@ -96,20 +97,17 @@ int			inspect_char(int c);
 
 t_philo		init_args(char **argv);
 
-t_thinker	*lstnew_think(int index, t_philo *data, int size);
-t_thinker	*lstlast_think(t_thinker *lst);
-void		lstadd_back_think(t_thinker *lst, t_thinker *new);
 t_thinker	*start_list(t_philo *data);
 
 void		start_threads(t_philo *data);
 
 void		*routine(void *list);
-void		one_philo_exec(t_thinker *list);
+void		*death_routine(void *ptr);
 
 long		ms_timeofday(void);
 void		waiting(unsigned long time);
 
-void		is_alive(t_philo *data);
+int			philo_is_dead(t_philo *data);
 
 void		free_think(t_philo *data);
 #endif

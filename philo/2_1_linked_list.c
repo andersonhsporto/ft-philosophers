@@ -6,15 +6,35 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 21:46:38 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:59:23 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	is_odd(int index);
+static t_thinker	*lstnew_think(int index, t_philo *data, int size);
+static int			is_odd(int index);
+static void			lstadd_back_think(t_thinker *lst, t_thinker *new);
 
-t_thinker	*lstnew_think(int index, t_philo *data, int size)
+t_thinker	*start_list(t_philo *data)
+{
+	t_thinker	*list;
+	int			index;
+
+	list = lstnew_think(data->args.nbr_philo, data, data->args.nbr_philo);
+	if (data->args.nbr_philo == 1)
+		return (list);
+	index = 1;
+	while (index < data->args.nbr_philo)
+	{
+		lstadd_back_think(list, \
+			lstnew_think(index, data, data->args.nbr_philo));
+		index++;
+	}
+	return (list);
+}
+
+static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 {
 	t_thinker	*element;
 
@@ -48,7 +68,7 @@ static int	is_odd(int index)
 	}
 }
 
-void	lstadd_back_think(t_thinker *lst, t_thinker *new)
+static void	lstadd_back_think(t_thinker *lst, t_thinker *new)
 {
 	if (lst)
 	{
@@ -62,22 +82,4 @@ void	lstadd_back_think(t_thinker *lst, t_thinker *new)
 	{
 		lst = new;
 	}
-}
-
-t_thinker	*start_list(t_philo *data)
-{
-	t_thinker	*list;
-	int			index;
-
-	list = lstnew_think(data->args.nbr_philo, data, data->args.nbr_philo);
-	if (data->args.nbr_philo == 1)
-		return (list);
-	index = 1;
-	while (index < data->args.nbr_philo)
-	{
-		lstadd_back_think(list, \
-			lstnew_think(index, data, data->args.nbr_philo));
-		index++;
-	}
-	return (list);
 }

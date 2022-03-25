@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 11:00:47 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:16:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	start_threads(t_philo *data)
 	{
 		printf("philosophers: join error\n");
 	}
-	is_alive(data);
+	return ;
 }
 
 static void	create_mutex(t_philo *data)
@@ -65,7 +65,9 @@ static int	create_threads(t_philo *data)
 		}
 		index--;
 		temp = temp->next;
+
 	}
+	pthread_create(&(temp->data->death), NULL, &death_routine, (void *)temp);
 	return (1);
 }
 
@@ -76,6 +78,7 @@ static int	join_threads(t_philo *data)
 
 	temp = data->list;
 	index = data->list->list_size;
+	pthread_join(temp->data->death, NULL);
 	while (index > 0)
 	{
 		if (pthread_join(temp->thread, NULL))
