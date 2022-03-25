@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:00:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:46:00 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_thinker	*start_list(t_philo *data);
 void		start_threads(t_philo *data);
 
 void		*routine(void *list);
+void		one_philo_exec(t_thinker *list);
 
 long		ms_timeofday(void);
 void		waiting(unsigned long time);

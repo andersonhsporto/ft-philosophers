@@ -6,13 +6,13 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:06:29 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:46:38 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	is_odd(int index);
+static int	is_odd(int index);
 
 t_thinker	*lstnew_think(int index, t_philo *data, int size)
 {
@@ -36,7 +36,7 @@ t_thinker	*lstnew_think(int index, t_philo *data, int size)
 	return (NULL);
 }
 
-int	is_odd(int index)
+static int	is_odd(int index)
 {
 	if (index % 2 == 0)
 	{
@@ -70,6 +70,8 @@ t_thinker	*start_list(t_philo *data)
 	int			index;
 
 	list = lstnew_think(data->args.nbr_philo, data, data->args.nbr_philo);
+	if (data->args.nbr_philo == 1)
+		return (list);
 	index = 1;
 	while (index < data->args.nbr_philo)
 	{

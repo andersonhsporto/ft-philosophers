@@ -6,16 +6,16 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 15:24:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:47:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	fork_mutex_handler(t_thinker *list, int status);
-void	lunchtime(t_thinker *list);
-void	naptime(t_thinker *list);
-void	reflection_time(t_thinker *list);
+static void	fork_mutex_handler(t_thinker *list, int status);
+static void	lunchtime(t_thinker *list);
+static void	naptime(t_thinker *list);
+static void	reflection_time(t_thinker *list);
 
 void	*routine(void *list)
 {
@@ -28,6 +28,11 @@ void	*routine(void *list)
 	printf("start day\n");
 	while (temp->loop && temp->status != dead)
 	{
+		if (temp->data->args.nbr_philo == 1)
+		{
+			one_philo_exec(list);
+			break ;
+		}
 		fork_mutex_handler(list, get_fork);
 		lunchtime(list);
 		fork_mutex_handler(list, drop_fork);
@@ -40,16 +45,16 @@ void	*routine(void *list)
 	return (NULL);
 }
 
-void	fork_mutex_handler(t_thinker *list, int status)
+static void	fork_mutex_handler(t_thinker *list, int status)
 {
 	if (status == get_fork)
 	{
 		pthread_mutex_lock(&list->is_dead);
-		pthread_mutex_lock(&list->prev->fork);
+		pthread_mutex_lock(&list->fork);
 		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
 			list->index, FORK);
 		pthread_mutex_unlock(&list->is_dead);
-		pthread_mutex_lock(&list->fork);
+		pthread_mutex_lock(&list->prev->fork);
 		printf("%ld    %d   %s\n", (ms_timeofday() - list->time_start), \
 			list->index, FORK);
 		pthread_mutex_unlock(&list->is_dead);
@@ -62,7 +67,7 @@ void	fork_mutex_handler(t_thinker *list, int status)
 	return ;
 }
 
-void	lunchtime(t_thinker *list)
+static void	lunchtime(t_thinker *list)
 {
 	if (list->status != dead)
 	{
@@ -78,7 +83,7 @@ void	lunchtime(t_thinker *list)
 	return ;
 }
 
-void	naptime(t_thinker *list)
+static void	naptime(t_thinker *list)
 {
 	if (list->status != dead)
 	{
@@ -92,7 +97,7 @@ void	naptime(t_thinker *list)
 	return ;
 }
 
-void	reflection_time(t_thinker *list)
+static void	reflection_time(t_thinker *list)
 {
 	if (list->status != dead)
 	{

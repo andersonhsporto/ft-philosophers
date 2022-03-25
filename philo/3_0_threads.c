@@ -6,15 +6,15 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/24 16:10:30 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:47:15 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	create_mutex(t_philo *data);
-int		create_threads(t_philo *data);
-int		join_threads(t_philo *data);
+static void		create_mutex(t_philo *data);
+static int		create_threads(t_philo *data);
+static int		join_threads(t_philo *data);
 
 void	start_threads(t_philo *data)
 {
@@ -31,7 +31,7 @@ void	start_threads(t_philo *data)
 	is_alive(data);
 }
 
-void	create_mutex(t_philo *data)
+static void	create_mutex(t_philo *data)
 {
 	t_thinker	*temp;
 	int			index;
@@ -48,7 +48,7 @@ void	create_mutex(t_philo *data)
 	return ;
 }
 
-int	create_threads(t_philo *data)
+static int	create_threads(t_philo *data)
 {
 	t_thinker	*temp;
 	int			index;
@@ -61,13 +61,13 @@ int	create_threads(t_philo *data)
 		{
 			return (0);
 		}
-		temp = temp->next;
 		index--;
+		temp = temp->next;
 	}
 	return (1);
 }
 
-int	join_threads(t_philo *data)
+static int	join_threads(t_philo *data)
 {
 	t_thinker	*temp;
 	int			index;
