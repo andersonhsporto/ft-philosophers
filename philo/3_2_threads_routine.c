@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 21:52:53 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:01:59 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ void	*routine(void *ptr)
 	t_thinker	*list;
 
 	list = (t_thinker *)ptr;
-	list->time_start = ms_timeofday();
 	if (list->odd == false)
-		usleep(10);
-	printf("Start thread --> %d %d\n", list->index, list->odd);
+		usleep(50);
 	while (philo_is_dead(list->data) == false)
 	{
-		fork_mutex_handler(list, get_fork);
-		lunchtime(list);
-		fork_mutex_handler(list, drop_fork);
-		sleeptime(list);
-		thinktime(list);
+		if (list->data->first_eat == 1 || list->odd == true)
+		{
+			fork_mutex_handler(list, get_fork);
+			lunchtime(list);
+			fork_mutex_handler(list, drop_fork);
+			sleeptime(list);
+			thinktime(list);
+		}
 	}
 	list->status = endgame;
 	return (NULL);
@@ -67,6 +68,7 @@ static void	lunchtime(t_thinker *list)
 		if (philo_is_dead(list->data) == false)
 			print_action(list, EAT);
 		list->nbr_snacks++;
+		list->data->first_eat = 1;
 		waiting(list->data->args.time_eat);
 	}
 	return ;

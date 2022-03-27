@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 20:16:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:01:02 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	create_threads(t_philo *data)
 	index = data->list->list_size;
 	while (index > 0)
 	{
+		temp->time_start = ms_timeofday();
 		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
 		{
 			return (0);
