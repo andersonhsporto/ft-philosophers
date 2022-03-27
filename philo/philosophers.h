@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/25 13:36:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:38:25 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_thinker
 	int					status;
 	int					nbr_snacks;
 	int					loop;
-	long				time_start;
+	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
 	pthread_mutex_t		is_dead;
@@ -104,8 +104,8 @@ void		start_threads(t_philo *data);
 void		*routine(void *list);
 void		*death_routine(void *ptr);
 
-long		ms_timeofday(void);
-void		waiting(unsigned long time);
+size_t		ms_timeofday(void);
+void		waiting(size_t	time);
 
 int			philo_is_dead(t_philo *data);
 
