@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:32:28 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/27 00:09:40 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 01:23:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_death(t_thinker *list)
 	{
 		time = ms_timeofday();
 		list->data->is_dead = true;
-		pthread_mutex_lock(&list->data->print_lock);
+		// pthread_mutex_lock(&list->data->print_lock);
 		printf("%zu\t%d %s\n", (time - list->time_start), list->index, DIE);
 		pthread_mutex_destroy(&list->data->death_lock);
 		pthread_mutex_destroy(&list->data->print_lock);
@@ -60,13 +60,40 @@ int	all_odd_picked_up_a_fork(t_thinker *list)
 			odd_counter++;
 		}
 		index++;
-		temp = temp->next;
+		temp = temp->prev;
 	}
 	index = list->list_size;
 	if (list->list_size % 2 != 0)
-		index--;
+		index++;
 	if (odd_counter == (index / 2))
 		return (1);
+	else
+		return (0);
+}
+
+int	optional_handler(t_thinker *list)
+{
+	t_thinker	*temp;
+	int			index;
+	int			counter;
+
+	temp = list;
+	counter = 0;
+	index = 0;
+	while (index < list->list_size)
+	{
+		if (temp->nbr_snacks >= temp->data->args.optional)
+		{
+			counter++;
+		}
+		index++;
+		temp = temp->next;
+	}
+	if (counter == list->list_size && list->data->args.optional != 0)
+	{
+		list->data->is_dead = true;
+		return (1);
+	}
 	else
 		return (0);
 }
