@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 22:43:45 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:15:15 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ typedef struct s_thinker
 {
 	int					index;
 	int					odd;
+	int					fork_taken;
 	int					status;
 	int					nbr_snacks;
-	int					loop;
 	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
@@ -99,14 +99,15 @@ int			inspect_char(int c);
 t_philo		init_args(char **argv);
 
 t_thinker	*start_list(t_philo *data);
+int			is_odd(int index);
 
 void		start_threads(t_philo *data);
 
 void		*routine(void *list);
 void		*death_routine(void *ptr);
 
-void	print_action(t_thinker *list, char *message);
-void	print_death(t_thinker *list);
+void		print_action(t_thinker *list, char *message);
+void		print_death(t_thinker *list);
 
 size_t		ms_timeofday(void);
 void		waiting(size_t	time);
@@ -114,4 +115,7 @@ void		waiting(size_t	time);
 int			philo_is_dead(t_philo *data);
 
 void		free_think(t_philo *data);
+
+int			all_odd_picked_up_a_fork(t_thinker *list);
+
 #endif

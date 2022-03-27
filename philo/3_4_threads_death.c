@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 22:55:24 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:16:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	thread_death(t_thinker *list)
 	temp = list;
 	if (temp->nbr_snacks == 0 && (ms_timeofday() - temp->time_start) >= temp->data->args.time_die)
 	{
-		printf("\n\n\n_______________0 snack\n\n\n");
 		print_death(temp);
 		return (true);
 	}

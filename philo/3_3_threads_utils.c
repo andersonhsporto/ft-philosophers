@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:32:28 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 22:49:34 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:09:40 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	print_action(t_thinker *list, char *message)
 
 	if (philo_is_dead(list->data) == false)
 	{
+		// pthread_mutex_lock(&list->data->print_lock);
 		time = ms_timeofday();
-		pthread_mutex_lock(&list->data->print_lock);
 		printf("%ld\t%d %s\n", (time - list->time_start), list->index, message);
-		pthread_mutex_unlock(&list->data->print_lock);
+		// pthread_mutex_unlock(&list->data->print_lock);
 		return ;
 	}
 	return ;
@@ -44,3 +44,29 @@ void	print_death(t_thinker *list)
 	return ;
 }
 
+int	all_odd_picked_up_a_fork(t_thinker *list)
+{
+	t_thinker	*temp;
+	int			index;
+	int			odd_counter;
+
+	temp = list;
+	index = 0;
+	odd_counter = 0;
+	while (index < list->list_size)
+	{
+		if (is_odd(temp->index) && temp->fork_taken == 1)
+		{
+			odd_counter++;
+		}
+		index++;
+		temp = temp->next;
+	}
+	index = list->list_size;
+	if (list->list_size % 2 != 0)
+		index--;
+	if (odd_counter == (index / 2))
+		return (1);
+	else
+		return (0);
+}

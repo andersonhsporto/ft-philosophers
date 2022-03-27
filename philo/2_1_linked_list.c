@@ -6,14 +6,13 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 22:44:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:15:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 static t_thinker	*lstnew_think(int index, t_philo *data, int size);
-static int			is_odd(int index);
 static void			lstadd_back_think(t_thinker *lst, t_thinker *new);
 
 t_thinker	*start_list(t_philo *data)
@@ -43,10 +42,10 @@ static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 	{
 		element->index = index;
 		element->odd = is_odd(index);
+		element->fork_taken = 0;
 		element->status = 0;
 		element->time_start = 0;
 		element->nbr_snacks = 0;
-		element->loop = 1;
 		element->data = data;
 		element->next = element;
 		element->prev = element;
@@ -56,7 +55,7 @@ static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 	return (NULL);
 }
 
-static int	is_odd(int index)
+int	is_odd(int index)
 {
 	if (index % 2 == 0)
 	{

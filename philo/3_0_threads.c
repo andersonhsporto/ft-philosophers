@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/26 23:01:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:08:54 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ static int	create_threads(t_philo *data)
 	while (index > 0)
 	{
 		temp->time_start = ms_timeofday();
+		printf("read: %d index: %d\n", temp->odd, temp->index);
 		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
 		{
 			return (0);
 		}
 		index--;
-		temp = temp->next;
+		temp = temp->prev;
 
 	}
 	pthread_create(&(temp->data->death), NULL, &death_routine, (void *)temp);
