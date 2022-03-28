@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:06:33 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:32:42 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	fork_mutex_handler(t_thinker *list, int action)
 {
 	if (list->data->args.nbr_philo == 1 && philo_is_dead(list->data) == false)
 	{
-		pthread_mutex_lock(&list->prev->fork);
+		pthread_mutex_lock(&list->fork);
 		print_action(list, FORK);
 		waiting(list->data->args.time_die);
 		return ;
