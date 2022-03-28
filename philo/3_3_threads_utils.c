@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:32:28 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:19:23 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:30:21 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	optional_handler(t_thinker *list)
 	if (counter == list->list_size && list->data->args.optional != 0)
 	{
 		list->data->is_dead = true;
-		printf("SAIU\n");
 		return (1);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:25:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:30:44 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	*death_routine(void *ptr)
 	{
 		pthread_mutex_lock(&list->sync);
 		if (optional_handler(list))
-		{
-			list->data->is_dead = true;
 			break ;
-		}
 		else if ((list->data->args.optional != 0) && \
 			list->nbr_snacks >= list->data->args.optional)
 			break ;
