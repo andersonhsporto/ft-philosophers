@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:09:19 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:25:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	philo_is_dead(t_philo *data)
 {
 	if (data->is_dead == true)
 	{
-		pthread_mutex_destroy(&data->death_mutex);
 		return (true);
 	}
 	else

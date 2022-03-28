@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:32:28 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:10:55 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:19:23 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ void	print_action(t_thinker *list, char *message)
 {
 	size_t	time;
 
-	pthread_mutex_lock(&list->data->death_mutex);
 	if (philo_is_dead(list->data) == false)
 	{
 		time = ms_timeofday();
 		printf("%ld\t%d %s\n", (time - list->time_start), list->index, message);
-		pthread_mutex_unlock(&list->data->death_mutex);
 		return ;
 	}
 	return ;
@@ -89,6 +87,7 @@ int	optional_handler(t_thinker *list)
 	if (counter == list->list_size && list->data->args.optional != 0)
 	{
 		list->data->is_dead = true;
+		printf("SAIU\n");
 		return (1);
 	}
 	else

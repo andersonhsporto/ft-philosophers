@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 02:58:57 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:24:16 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	*routine(void *ptr)
 			lunchtime(list);
 			fork_mutex_handler(list, drop_fork);
 			if (optional_handler(list))
-				return (NULL);
+			{
+				printf("1\n");
+				break ;
+			}
 			sleeptime(list);
 			thinktime(list);
 		}
@@ -71,9 +74,9 @@ static void	lunchtime(t_thinker *list)
 		pthread_mutex_lock(&list->sync);
 		print_action(list, EAT);
 		list->last_meal = (ms_timeofday());
+		list->nbr_snacks++;
 		pthread_mutex_unlock(&list->sync);
 		waiting(list->data->args.time_eat);
-		list->nbr_snacks++;
 		return ;
 	}
 	return ;
