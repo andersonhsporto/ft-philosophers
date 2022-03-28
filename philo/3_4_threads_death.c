@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:42:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:09:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,13 @@ static int	thread_death(t_thinker *list)
 
 int	philo_is_dead(t_philo *data)
 {
-	pthread_mutex_lock(&data->death_lock);
 	if (data->is_dead == true)
 	{
-		pthread_mutex_unlock(&data->death_lock);
+		pthread_mutex_destroy(&data->death_mutex);
 		return (true);
 	}
 	else
 	{
-		pthread_mutex_unlock(&data->death_lock);
+		return (false);
 	}
-	return (false);
 }
