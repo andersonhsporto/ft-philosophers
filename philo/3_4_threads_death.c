@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/27 23:47:57 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 00:44:49 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	philo_is_dead(t_philo *data)
 		return (true);
 	}
 	else
+	{
 		pthread_mutex_unlock(&data->death_lock);
+	}
 	return (false);
 }
 
@@ -30,16 +32,16 @@ int	thread_death(t_thinker *list)
 	t_thinker	*temp;
 
 	temp = list;
-
-	if (all_odd_picked_up_a_fork(temp) && temp->nbr_snacks == 0 && (ms_timeofday() - temp->time_start) >= temp->data->args.time_die)
+	if (temp->nbr_snacks == 0 && \
+		((ms_timeofday() - temp->time_start) >= (temp->data->args.time_die)))
 	{
 		printf("SNACK 0\n");
 		print_death(temp);
 		return (true);
 	}
-	if (temp->nbr_snacks > 0 && ((ms_timeofday() - temp->last_meal) >= (temp->data->args.time_die)))
+	if (temp->nbr_snacks > 0 && \
+		((ms_timeofday() - temp->last_meal) >= (temp->data->args.time_die)))
 	{
-		printf("%d index, %ld > %ld\n", temp->index, ((ms_timeofday() - temp->last_meal)), (temp->data->args.time_die));
 		print_death(temp);
 		return (true);
 	}
@@ -57,12 +59,15 @@ void	*death_routine(void *ptr)
 	list = (t_thinker *)ptr;
 	while (true)
 	{
-		if ((list->data->args.optional != 0) && list->nbr_snacks >= list->data->args.optional)
+		pthread_mutex_lock(&list->sync);
+		if ((list->data->args.optional != 0) && \
+			list->nbr_snacks >= list->data->args.optional)
 			break ;
 		if (thread_death(list))
 			break ;
+		pthread_mutex_unlock(&list->sync);
 		list = list->next;
 	}
+	pthread_mutex_destroy(&list->sync);
 	return (NULL);
 }
-
