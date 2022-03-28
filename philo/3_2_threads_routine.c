@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:28:40 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 03:33:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	*routine(void *ptr)
 			lunchtime(list);
 			fork_mutex_handler(list, drop_fork);
 			if (optional_handler(list))
-			{
-				printf("1\n");
 				break ;
-			}
 			sleeptime(list);
 			thinktime(list);
 		}
