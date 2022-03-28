@@ -2,7 +2,7 @@ NAME	= philo
 
 CC		= gcc
 
-CFLAGS	= -Wall -g #-Wextra -Werror
+CFLAGS	= -Wall -g -fsanitize=address -Werror
 
 HEADER	= philosophers.h
 

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 00:46:26 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 00:59:15 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ enum e_actions
 	rest,
 	reflection,
 	dead,
-	endgame,
 	odd,
 	even,
 };
