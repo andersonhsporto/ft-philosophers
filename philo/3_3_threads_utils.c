@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:32:28 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 00:45:22 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:25:56 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	print_death(t_thinker *list)
 		list->data->is_dead = true;
 		printf("%zu\t%d %s\n", (time - list->time_start), list->index, DIE);
 		pthread_mutex_destroy(&list->data->death_lock);
-		pthread_mutex_destroy(&list->data->print_lock);
 		return ;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:24:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:26:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_thinker
 	int					index;
 	int					odd;
 	int					fork_taken;
-	int					status;
 	int					nbr_snacks;
 	size_t				time_start;
 	size_t				last_meal;
@@ -78,7 +77,6 @@ typedef struct s_philo
 {
 	pthread_t			death;
 	pthread_mutex_t		death_lock;
-	pthread_mutex_t		print_lock;
 	int					is_dead;
 	t_args				args;
 	t_thinker			*list;
