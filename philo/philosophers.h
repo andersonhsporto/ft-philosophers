@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 00:59:15 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:12:49 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ enum	e_arg
 typedef struct s_args
 {
 	int			nbr_philo;
-	int			time_die;
+	size_t		time_die;
 	int			time_eat;
 	int			time_sleep;
 	int			optional;
