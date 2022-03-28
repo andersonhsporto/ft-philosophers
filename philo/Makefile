@@ -2,7 +2,7 @@ NAME	= philo
 
 CC		= gcc
 
-CFLAGS	= -Wall -g -fsanitize=address -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 HEADER	= philosophers.h
 
@@ -34,6 +34,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re
-
-p: all
-	./philo 2 120 60 60 2
