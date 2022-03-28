@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/27 23:42:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 23:47:57 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ void	*death_routine(void *ptr)
 			break ;
 		if (thread_death(list))
 			break ;
-		// pthread_mutex_unlock(&list->sync);
 		list = list->next;
 	}
-	// pthread_mutex_destroy(&list->sync);
 	return (NULL);
 }
 

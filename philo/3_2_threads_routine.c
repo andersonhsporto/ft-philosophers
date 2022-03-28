@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/27 23:41:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 23:50:35 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,11 @@ static void	lunchtime(t_thinker *list)
 {
 	if (philo_is_dead(list->data) == false)
 	{
-		// pthread_mutex_lock(&list->sync);
+		waiting(list->data->args.time_eat);
 		print_action(list, EAT);
 		printf("%d index, %ld > %ld\n", list->index, ((ms_timeofday() - list->last_meal)), (list->data->args.time_die));
-		waiting(list->data->args.time_eat);
 		list->last_meal = (ms_timeofday());
 		list->nbr_snacks++;
-		// pthread_mutex_unlock(&list->sync);
 		return ;
 	}
 	return ;
