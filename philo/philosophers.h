@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/27 00:15:15 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/27 22:59:04 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_thinker
 	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
-	pthread_mutex_t		is_dead;
+	pthread_mutex_t		sync;
 	size_t				last_meal;
 	struct s_philo		*data;
 	struct s_thinker	*prev;
