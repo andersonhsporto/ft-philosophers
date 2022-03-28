@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:32:42 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:47:59 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	fork_mutex_handler(t_thinker *list, int action)
 
 static void	lunchtime(t_thinker *list)
 {
-	if (philo_is_dead(list->data) == false)
+	if (philo_is_dead(list->data) == false && !optional_handler(list))
 	{
 		waiting(list->data->args.time_eat);
-		if (philo_is_dead(list->data) == false)
+		if (philo_is_dead(list->data) == false && !optional_handler(list))
 		{
 			pthread_mutex_lock(&list->sync);
 			print_action(list, EAT);
