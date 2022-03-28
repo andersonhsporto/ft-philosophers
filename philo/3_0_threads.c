@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:25:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:51:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ static void	create_mutex(t_philo *data)
 
 	temp = data->list;
 	index = data->list->list_size;
+	pthread_mutex_init(&data->printer_mutex, NULL);
 	while (index > 0)
 	{
 		pthread_mutex_init(&temp->fork, NULL);
 		pthread_mutex_init(&temp->sync, NULL);
+		pthread_mutex_init(&temp->eat_mutex, NULL);
 		index--;
 		temp = temp->next;
 	}
@@ -57,15 +59,15 @@ static int	create_threads(t_philo *data)
 	index = data->list->list_size;
 	while (index > 0)
 	{
-		temp->time_start = ms_timeofday();
-		if (pthread_create(&(temp->thread), NULL, &routine, (void *)temp))
+		temp->last_meal = 0;
+		if (pthread_create(&(temp->thread), NULL, &main_routine, (void *)temp))
 		{
 			return (0);
 		}
 		index--;
 		temp = temp->prev;
 	}
-	pthread_create(&(temp->data->death), NULL, &death_routine, (void *)temp);
+	pthread_create(&(data->death), NULL, &death_routine, (void *)data->list);
 	return (1);
 }
 
@@ -76,7 +78,6 @@ static int	join_threads(t_philo *data)
 
 	temp = data->list;
 	index = data->list->list_size;
-	pthread_join(temp->data->death, NULL);
 	while (index > 0)
 	{
 		if (pthread_join(temp->thread, NULL))
@@ -86,5 +87,6 @@ static int	join_threads(t_philo *data)
 		index--;
 		temp = temp->next;
 	}
+	pthread_join(temp->data->death, NULL);
 	return (1);
 }

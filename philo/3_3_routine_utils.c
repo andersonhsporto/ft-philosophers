@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3_3_routine_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 16:56:58 by anhigo-s          #+#    #+#             */
+/*   Updated: 2022/03/28 17:01:04 by anhigo-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosophers.h"
+
+void	fork_lock(t_thinker *list)
+{
+	pthread_mutex_lock(&list->fork);
+	pthread_mutex_lock(&list->data->printer_mutex);
+	printf("%zu\t%s %d\n", (timenow() - list->time_start), FORK, list->index);
+	pthread_mutex_unlock(&list->data->printer_mutex);
+	pthread_mutex_lock(&list->prev->fork);
+	pthread_mutex_lock(&list->data->printer_mutex);
+	printf("%zu\t%s %d\n", (timenow() - list->time_start), FORK, list->index);
+	pthread_mutex_unlock(&list->data->printer_mutex);
+	return ;
+}
+
+void	lunchtime(t_thinker *list)
+{
+	pthread_mutex_lock(&list->eat_mutex);
+	list->last_meal = timenow();
+	pthread_mutex_unlock(&list->eat_mutex);
+	pthread_mutex_lock(&list->data->printer_mutex);
+	printf("%zu\t%s %d\n", (timenow() - list->time_start), FORK, list->index);
+	pthread_mutex_unlock(&list->data->printer_mutex);
+	new_usleep(list->data->args.time_eat);
+}
+
+void	fork_unlock(t_thinker *list)
+{
+	pthread_mutex_unlock(&list->fork);
+	pthread_mutex_unlock(&list->prev->fork);
+}
+
+void	naptime(t_thinker *list)
+{
+	pthread_mutex_lock(&list->data->printer_mutex);
+	printf("%zu\t%s %d\n", (timenow() - list->time_start), SLEEP, list->index);
+	pthread_mutex_unlock(&list->data->printer_mutex);
+	new_usleep(list->data->args.time_sleep);
+}
+
+void	thinker(t_thinker *list)
+{
+	pthread_mutex_lock(&list->data->printer_mutex);
+	printf("%zu\t%s %d\n", (timenow() - list->time_start), THINK, list->index);
+	pthread_mutex_unlock(&list->data->printer_mutex);
+}

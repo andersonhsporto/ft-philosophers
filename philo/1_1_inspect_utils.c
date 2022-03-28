@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.1-inspect_utils.c                                :+:      :+:    :+:   */
+/*   1_1_inspect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:48:45 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/21 02:21:04 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:39:00 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_isdigit(int c)
 
 int	ft_atoi(const char *str)
 {
-	long	number;
+	size_t	number;
 	int		sign;
 	int		index;
 

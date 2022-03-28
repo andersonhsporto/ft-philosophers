@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 03:25:10 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:01:08 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ typedef struct s_thinker
 	int					odd;
 	int					fork_taken;
 	int					nbr_snacks;
-	size_t				time_start;
 	size_t				last_meal;
+	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
 	pthread_mutex_t		sync;
+	pthread_mutex_t		eat_mutex;
 	struct s_philo		*data;
 	struct s_thinker	*prev;
 	struct s_thinker	*next;
@@ -76,6 +77,7 @@ typedef struct s_thinker
 typedef struct s_philo
 {
 	pthread_t			death;
+	pthread_mutex_t		printer_mutex;
 	int					is_dead;
 	t_args				args;
 	t_thinker			*list;
@@ -92,7 +94,7 @@ int			is_odd(int index);
 
 void		start_threads(t_philo *data);
 
-void		*routine(void *list);
+void		*main_routine(void *ptr);
 void		*death_routine(void *ptr);
 
 void		print_action(t_thinker *list, char *message);
@@ -100,7 +102,7 @@ void		print_death(t_thinker *list);
 
 int			philo_is_dead(t_philo *data);
 
-size_t		ms_timeofday(void);
+size_t		timenow(void);
 void		waiting(size_t	time);
 
 int			all_odd_picked_up_a_fork(t_thinker *list);
@@ -108,4 +110,12 @@ int			optional_handler(t_thinker *list);
 
 void		free_think(t_philo *data);
 
+
+void	new_usleep(size_t time_in_ms);
+
+void	fork_lock(t_thinker *list);
+void	lunchtime(t_thinker *list);
+void	fork_unlock(t_thinker *list);
+void	naptime(t_thinker *list);
+void	thinker(t_thinker *list);
 #endif

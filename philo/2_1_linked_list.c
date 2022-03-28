@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:26:25 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:54:30 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 		element->index = index;
 		element->odd = is_odd(index);
 		element->fork_taken = 0;
-		element->time_start = 0;
 		element->nbr_snacks = 0;
 		element->data = data;
 		element->next = element;
