@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:26:28 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:29:34 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef struct s_philo
 }	t_philo;
 
 int			inspect_args(int argc, char **argv);
-int			ft_atoi(const char *str);
 int			inspect_char(int c);
+int			ft_atoi(const char *str);
 
 t_philo		init_args(char **argv);
 
@@ -99,14 +99,14 @@ void		*death_routine(void *ptr);
 void		print_action(t_thinker *list, char *message);
 void		print_death(t_thinker *list);
 
+int			philo_is_dead(t_philo *data);
+
 size_t		ms_timeofday(void);
 void		waiting(size_t	time);
 
-int			philo_is_dead(t_philo *data);
-
-void		free_think(t_philo *data);
-
 int			all_odd_picked_up_a_fork(t_thinker *list);
 int			optional_handler(t_thinker *list);
+
+void		free_think(t_philo *data);
 
 #endif
