@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:12:49 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:16:29 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,7 @@ enum e_bool
 enum e_actions
 {
 	get_fork,
-	drop_fork,
-	eating,
-	rest,
-	reflection,
-	dead,
-	odd,
-	even,
+	drop_fork
 };
 
 enum	e_arg
@@ -70,10 +64,10 @@ typedef struct s_thinker
 	int					status;
 	int					nbr_snacks;
 	size_t				time_start;
+	size_t				last_meal;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
 	pthread_mutex_t		sync;
-	size_t				last_meal;
 	struct s_philo		*data;
 	struct s_thinker	*prev;
 	struct s_thinker	*next;
@@ -86,7 +80,6 @@ typedef struct s_philo
 	pthread_mutex_t		death_lock;
 	pthread_mutex_t		print_lock;
 	int					is_dead;
-	int					first_eat;
 	t_args				args;
 	t_thinker			*list;
 }	t_philo;
