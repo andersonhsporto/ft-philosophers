@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 02:21:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 03:31:14 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void		create_mutex(t_philo *data);
 static int		create_threads(t_philo *data);
+static void		join_threads(t_philo *data);
 
 void	start_threads(t_philo *data)
 {
@@ -23,7 +24,7 @@ void	start_threads(t_philo *data)
 	{
 		printf("philosophers: thread error\n");
 	}
-	pthread_join(data->death, NULL);
+	join_threads(data);
 	return ;
 }
 
@@ -39,7 +40,7 @@ static void	create_mutex(t_philo *data)
 	{
 		pthread_mutex_init(&temp->eat_mutex, NULL);
 		pthread_mutex_init(&temp->fork, NULL);
-		pthread_mutex_init(&temp->sync, NULL);
+		pthread_mutex_init(&temp->death_mutex, NULL);
 		index--;
 		temp = temp->next;
 	}
@@ -65,4 +66,20 @@ static int	create_threads(t_philo *data)
 	}
 	pthread_create(&(data->death), NULL, &death_routine, (void *)data->list);
 	return (1);
+}
+
+static void	join_threads(t_philo *data)
+{
+	t_thinker	*temp;
+	int			index;
+
+	temp = data->list;
+	index = data->list->list_size;
+	pthread_join(temp->data->death, NULL);
+	while (index > 0)
+	{
+		pthread_join(temp->thread, NULL);
+		index--;
+		temp = temp->next;
+	}
 }

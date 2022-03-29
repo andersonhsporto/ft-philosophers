@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:56:58 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 02:04:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 03:34:29 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@ void	fork_lock(t_thinker *list)
 	{
 		pthread_mutex_lock(&list->fork);
 		pthread_mutex_lock(&list->data->printer_mutex);
-		printf("%zu\t%s %d\n", \
-			(timenow() - list->time_start), FORK, list->index);
+		if (list->data->philo_alive == true)
+			printf("%zu\t%s %d\n", \
+				(timenow() - list->time_start), FORK, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
 		pthread_mutex_lock(&list->prev->fork);
 		pthread_mutex_lock(&list->data->printer_mutex);
-		printf("%zu\t%s %d\n", \
-			(timenow() - list->time_start), FORK, list->index);
+		if (list->data->philo_alive == true)
+			printf("%zu\t%s %d\n", \
+				(timenow() - list->time_start), FORK, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
+		return ;
 	}
 	return ;
 }
@@ -39,22 +42,21 @@ void	lunchtime(t_thinker *list)
 		list->nbr_snacks++;
 		pthread_mutex_unlock(&list->eat_mutex);
 		pthread_mutex_lock(&list->data->printer_mutex);
-		printf("%zu\t%s %d\n", \
-			(timenow() - list->time_start), EAT, list->index);
+		if (list->data->philo_alive == true)
+			printf("%zu\t%s %d\n", \
+				(timenow() - list->time_start), EAT, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
 		new_usleep(list->data->args.time_eat);
+		return ;
 	}
 	return ;
 }
 
 void	fork_unlock(t_thinker *list)
 {
-	if (list->data->philo_alive == true)
-	{
-		pthread_mutex_unlock(&list->fork);
-		pthread_mutex_unlock(&list->prev->fork);
-		return ;
-	}
+	pthread_mutex_unlock(&list->fork);
+	pthread_mutex_unlock(&list->prev->fork);
+	return ;
 }
 
 void	naptime(t_thinker *list)
@@ -62,10 +64,12 @@ void	naptime(t_thinker *list)
 	if (list->data->philo_alive == true)
 	{
 		pthread_mutex_lock(&list->data->printer_mutex);
-		printf("%zu\t%s %d\n", \
-			(timenow() - list->time_start), SLEEP, list->index);
+		if (list->data->philo_alive == true)
+			printf("%zu\t%s %d\n", \
+				(timenow() - list->time_start), SLEEP, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
 		new_usleep(list->data->args.time_sleep);
+		return ;
 	}
 	return ;
 }

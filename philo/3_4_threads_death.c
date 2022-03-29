@@ -6,14 +6,14 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 02:23:13 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 03:35:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 static int	optinal_handler(t_thinker *list);
-static void	destroy_mutex(t_thinker *list);
+static void	unlock_all_mutex(t_thinker *list);
 
 void	*death_routine(void *ptr)
 {
@@ -37,7 +37,7 @@ void	*death_routine(void *ptr)
 		pthread_mutex_unlock(&list->eat_mutex);
 		pthread_mutex_unlock(&list->data->printer_mutex);
 	}
-	destroy_mutex(list);
+	unlock_all_mutex(list);
 	return (NULL);
 }
 
@@ -63,7 +63,7 @@ static int	optinal_handler(t_thinker *list)
 	return (nbr);
 }
 
-static void	destroy_mutex(t_thinker *list)
+static void	unlock_all_mutex(t_thinker *list)
 {
 	t_thinker	*temp;
 	int			index;
@@ -71,12 +71,16 @@ static void	destroy_mutex(t_thinker *list)
 	temp = list;
 	index = list->list_size;
 	temp->data->philo_alive = false;
+	pthread_mutex_unlock(&temp->data->printer_mutex);
 	pthread_mutex_destroy(&temp->data->printer_mutex);
 	while (index > 0)
 	{
+		pthread_mutex_unlock(&temp->eat_mutex);
 		pthread_mutex_destroy(&temp->eat_mutex);
+		pthread_mutex_unlock(&temp->fork);
 		pthread_mutex_destroy(&temp->fork);
-		pthread_mutex_destroy(&temp->sync);
+		pthread_mutex_unlock(&temp->death_mutex);
+		pthread_mutex_destroy(&temp->death_mutex);
 		index--;
 		temp = temp->next;
 	}
