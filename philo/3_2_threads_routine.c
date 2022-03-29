@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 03:45:57 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 03:50:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*main_routine(void *ptr)
 		{
 			pthread_mutex_lock(&list->fork);
 			pthread_mutex_lock(&list->data->printer_mutex);
-			printf("%zu\t%s %d\n", \
+			printf("%zu%s %d\n", \
 				(timenow() - list->time_start), FORK, list->index);
 			pthread_mutex_unlock(&list->data->printer_mutex);
 			new_usleep(list->data->args.time_die);
