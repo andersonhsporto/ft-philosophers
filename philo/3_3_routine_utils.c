@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:56:58 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 03:58:28 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:32:20 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	lunchtime(t_thinker *list)
 			printf("%zu\t%s %d\n", \
 				(timenow() - list->time_start), EAT, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
-		new_usleep(list->data->args.time_eat);
+		waiting(list->data->args.time_eat);
 		return ;
 	}
 	return ;
@@ -68,7 +68,7 @@ void	naptime(t_thinker *list)
 			printf("%zu\t%s %d\n", \
 				(timenow() - list->time_start), SLEEP, list->index);
 		pthread_mutex_unlock(&list->data->printer_mutex);
-		new_usleep(list->data->args.time_sleep);
+		waiting(list->data->args.time_sleep);
 		return ;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 03:14:29 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:32:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,12 @@ void		print_death(t_thinker *list);
 int			philo_is_dead(t_philo *data);
 
 size_t		timenow(void);
-void		waiting(size_t	time);
+void		waiting(size_t time_in_ms);
 
 int			all_odd_picked_up_a_fork(t_thinker *list);
 int			optional_handler(t_thinker *list);
 
 void		free_think(t_philo *data);
-
-void		new_usleep(size_t time_in_ms);
 
 void		fork_lock(t_thinker *list);
 void		lunchtime(t_thinker *list);

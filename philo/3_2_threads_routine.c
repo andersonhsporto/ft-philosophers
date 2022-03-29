@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 04:07:22 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:31:16 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*main_routine(void *ptr)
 	list->time_start = timenow();
 	list->last_meal = list->time_start;
 	if (list->index % 2 == 0)
-		new_usleep(list->data->args.time_eat);
+		waiting(list->data->args.time_eat);
 	while (list->data->philo_alive == true)
 	{
 		if (list->data->args.nbr_philo == 1)
@@ -30,7 +30,7 @@ void	*main_routine(void *ptr)
 			printf("%zu\t%s %d\n", \
 				(timenow() - list->time_start), FORK, list->index);
 			pthread_mutex_unlock(&list->data->printer_mutex);
-			new_usleep(list->data->args.time_die);
+			waiting(list->data->args.time_die);
 		}
 		fork_lock(list);
 		lunchtime(list);
