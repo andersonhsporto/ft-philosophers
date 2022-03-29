@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 00:00:31 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 01:19:51 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:37:22 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_philo	init_args(char **argv)
 	data_struct.args.time_die = ft_atoi(argv[2]);
 	data_struct.args.time_eat = ft_atoi(argv[3]);
 	data_struct.args.time_sleep = ft_atoi(argv[4]);
-	data_struct.is_dead = false;
+	data_struct.philo_alive = true;
 	if (argv[5])
 	{
 		data_struct.args.optional = ft_atoi(argv[5]);

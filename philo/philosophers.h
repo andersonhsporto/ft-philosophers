@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 17:01:08 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:09:38 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_thinker
 {
 	int					index;
 	int					odd;
-	int					fork_taken;
 	int					nbr_snacks;
 	size_t				last_meal;
 	size_t				time_start;
@@ -78,7 +77,7 @@ typedef struct s_philo
 {
 	pthread_t			death;
 	pthread_mutex_t		printer_mutex;
-	int					is_dead;
+	int					philo_alive;
 	t_args				args;
 	t_thinker			*list;
 }	t_philo;
@@ -110,12 +109,11 @@ int			optional_handler(t_thinker *list);
 
 void		free_think(t_philo *data);
 
+void		new_usleep(size_t time_in_ms);
 
-void	new_usleep(size_t time_in_ms);
-
-void	fork_lock(t_thinker *list);
-void	lunchtime(t_thinker *list);
-void	fork_unlock(t_thinker *list);
-void	naptime(t_thinker *list);
-void	thinker(t_thinker *list);
+void		fork_lock(t_thinker *list);
+void		lunchtime(t_thinker *list);
+void		fork_unlock(t_thinker *list);
+void		naptime(t_thinker *list);
+void		thinker(t_thinker *list);
 #endif
