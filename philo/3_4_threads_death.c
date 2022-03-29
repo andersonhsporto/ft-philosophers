@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 03:35:48 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 03:47:25 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*death_routine(void *ptr)
 	t_thinker	*list;
 
 	list = (t_thinker *)ptr;
-	new_usleep(list->data->args.time_eat / 2);
+	new_usleep(10);
 	while (list->data->philo_alive == true)
 	{
 		pthread_mutex_lock(&list->eat_mutex);
