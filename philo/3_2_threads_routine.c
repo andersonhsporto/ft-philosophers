@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:08:16 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 21:37:46 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/29 02:23:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*main_routine(void *ptr)
 
 	list = (t_thinker *)ptr;
 	list->time_start = timenow();
-	// printf("philo >>%d start\n", list->index);
 	if (list->index % 2)
 		new_usleep(list->data->args.time_eat);
 	while (list->data->philo_alive == true)
