@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 13:32:00 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:05:41 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ static void	unlock_all_mutex(t_thinker *list)
 		pthread_mutex_destroy(&temp->eat_mutex);
 		pthread_mutex_unlock(&temp->fork);
 		pthread_mutex_destroy(&temp->fork);
-		pthread_mutex_unlock(&temp->death_mutex);
-		pthread_mutex_destroy(&temp->death_mutex);
 		index--;
 		temp = temp->next;
 	}

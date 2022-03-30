@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 03:22:34 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 03:31:14 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:56:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	create_mutex(t_philo *data)
 	{
 		pthread_mutex_init(&temp->eat_mutex, NULL);
 		pthread_mutex_init(&temp->fork, NULL);
-		pthread_mutex_init(&temp->death_mutex, NULL);
 		index--;
 		temp = temp->next;
 	}

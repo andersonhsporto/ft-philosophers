@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 23:01:00 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/29 13:32:28 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:07:54 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ typedef struct s_args
 typedef struct s_thinker
 {
 	int					index;
-	int					odd;
 	int					nbr_snacks;
 	size_t				last_meal;
 	size_t				time_start;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
-	pthread_mutex_t		death_mutex;
 	pthread_mutex_t		eat_mutex;
 	struct s_philo		*data;
 	struct s_thinker	*prev;
@@ -89,7 +87,6 @@ int			ft_atoi(const char *str);
 t_philo		init_args(char **argv);
 
 t_thinker	*start_list(t_philo *data);
-int			is_odd(int index);
 
 void		start_threads(t_philo *data);
 

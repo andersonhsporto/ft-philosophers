@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/28 21:37:36 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:02:05 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 	if (element)
 	{
 		element->index = index;
-		element->odd = is_odd(index);
 		element->nbr_snacks = 0;
 		element->data = data;
 		element->next = element;
@@ -50,18 +49,6 @@ static t_thinker	*lstnew_think(int index, t_philo *data, int size)
 		return (element);
 	}
 	return (NULL);
-}
-
-int	is_odd(int index)
-{
-	if (index % 2 == 0)
-	{
-		return (false);
-	}
-	else
-	{
-		return (true);
-	}
 }
 
 static void	lstadd_back_think(t_thinker *lst, t_thinker *new)
