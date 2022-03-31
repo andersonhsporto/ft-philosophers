@@ -1,4 +1,5 @@
 # ft-philosophers
+![norminette](https://github.com/andersonhsporto/ft-philosophers/workflows/norminette/badge.svg)
 
 Um pequeno projeto para aprender os conceitos básicos de threads e mutex. <br>
 Com base no "problema [Jantar dos filósofos](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais)",
@@ -24,7 +25,11 @@ pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 #### Argumentos 
 O programa recebe os seguintes argumentos
 ```
-number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+  number_of_philosophers 
+  time_to_die 
+  time_to_eat 
+  time_to_sleep
+  [number_of_times_each_philosopher_must_eat]
 ```
 * _number_of_philosophers_: O número de filosofos e de garfos.
 * _time_to_die_: O tempo (em milissegundos) desde o início da última refeição ou o início da simulação, após o qual um filósofo morrerá de fome. 
@@ -32,10 +37,20 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_ea
 * _time_to_sleep_: O tempo que um filósofo passará dormindo.
 * _number_of_times_each_philosopher_must_eat_: Este argumento é opcional. Se todos os filósofos comerem pelo menos "number_of_times_each_philosopher_must_eat" vezes, a simulação para. Se não for especificado, a simulação para quando um filósofo morre.
 
-## How to launch
+## Como executar
 Compile o programa através do Makefile usando o comando ```$ make``` na raiz do repósitorio
 
 Execute assim:
 ```
 $ ./philo 4 410 200 200
 ```
+<img src="https://github.com/andersonhsporto/ft-philosophers/blob/main/img/1.png" 
+     width="600" 
+     height="500" />
+     
+## REFERÊNCIAS
+[Jantar dos filosofos](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais) Gustavo Pantuza
+
+[Code Vault: Playlist - Unix Threads in C](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2) Video 1 (Short introduction to threads) - Video 7 (How to pass arguments to threads in C)
+
+[Jacob Sorber: Playlist - Programming with Threads](https://www.youtube.com/watch?v=uA8X5zNOGw8&list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM) Video 1 (How to create and join threads in C) - Video 3 (Safety and Speed Issues with Threads)
