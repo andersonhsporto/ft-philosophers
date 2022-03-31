@@ -23,7 +23,7 @@ pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 > Em seguida ele volta a pensar.<br>
 
 #### Argumentos 
-O programa recebe os seguintes argumentos
+O programa recebe os seguintes argumentos:
 ```
   number_of_philosophers 
   time_to_die 
