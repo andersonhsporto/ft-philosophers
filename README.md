@@ -49,7 +49,7 @@ $ ./philo 4 410 200 200
      height="500" />
      
 ## REFERÊNCIAS
-[Jantar dos filosofos -](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais) Gustavo Pantuza
+[Jantar dos filosofos -](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais) Problema de sincronização em Sistemas Operacionais
 
 [Code Vault: Playlist - Unix Threads in C](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2) Video 1 (Short introduction to threads) - Video 7 (How to pass arguments to threads in C)
 
