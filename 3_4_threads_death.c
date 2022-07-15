@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:08:44 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/03/30 14:05:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:38:44 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	*death_routine(void *ptr)
 		}
 		pthread_mutex_unlock(&list->eat_mutex);
 		pthread_mutex_unlock(&list->data->printer_mutex);
+		list = list->next;
 	}
 	unlock_all_mutex(list);
 	return (NULL);
