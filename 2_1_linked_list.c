@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 02:45:43 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/07/05 22:26:16 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/08/04 12:31:29 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_thinker	*start_list(t_philo *data)
 	index = 1;
 	while (index < data->args.nbr_philo)
 	{
-		lstadd_back_think(list, lstnew_think(index, data, data->args.nbr_philo));
+		lstadd_back_think(list, lstnew_think(index, data, \
+		data->args.nbr_philo));
 		index++;
 	}
 	return (list);
