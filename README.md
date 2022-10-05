@@ -26,7 +26,7 @@ pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 > Em seguida ele volta a pensar.<br>
 
 #### Argumentos:
-O programa recebe os seguintes argumentos:
+O programa recebe os seguintes argumentos durante a execução do binário ```philo```.
 
 | Argumento          | Descrição                              |
 | :-----------------:| :----------------------------------:   |
@@ -35,6 +35,8 @@ O programa recebe os seguintes argumentos:
 | time_to_eat                                    | O tempo (em milissegundos) em que filósofo leva para comer. Durante esse tempo, eles precisam segurar dois garfos. |
 | time_to_sleep                                  | O tempo que um filósofo passará dormindo. |
 | number_of_times_each_philosopher_must_eat      | Este argumento é opcional. Se todos os filósofos comerem pelo menos "number_of_times_each_philosopher_must_eat" vezes, a simulação para. Se não for especificado, a simulação para quando um filósofo morre. |
+
+*Os argumentos são números inteiros e devem seguir a ordem desta tabela*
 
 
 ## Como executar:
