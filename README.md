@@ -40,7 +40,7 @@ O programa recebe os seguintes argumentos ao executar o binário ```philo```.
 
 
 ## Como executar:
-Compile o programa através do Makefile usando o comando ```$ make``` na raiz do repósitorio
+Compile o programa através do Makefile usando o comando ```make``` na raiz do repósitorio
 
 Exemplo:
 ```
