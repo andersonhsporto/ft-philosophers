@@ -1,5 +1,5 @@
 # ft-philosophers
-![norminette](https://github.com/andersonhsporto/ft-philosophers/workflows/norminette/badge.svg)
+
 
 &emsp;Implementação de conceitos básicos de threads e mutex. <br>
 ft-philosophers utiliza como base o "problema [Jantar dos filósofos](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais)", originalmente formulado por Edsger Dijkstra.
@@ -50,6 +50,15 @@ $ ./philo 4 410 200 200
      width="600" 
      height="500" />
      
+   
+## Estilo de código
+
+O estilo de código utilizado neste projeto é o [Norminette](https://github.com/42School/norminette) criado pela escola 42.
+
+![norminette](https://github.com/andersonhsporto/ft-philosophers/workflows/norminette/badge.svg)
+     
+     
+
 ## REFERÊNCIAS
 [Jantar dos filosofos -](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais) Problema de sincronização em Sistemas Operacionais
 
